@@ -1,6 +1,12 @@
 // Code 201 Day 02
 // Ruth assignment submission
 
+//user enters site: ask their name so you can personalize their quiz score
+var userName = prompt('Hi! What\'s your name?');
+
+//create a variable to keep track of user's score
+var score = 0;
+
 //Ask three questions
 alert('Pop quiz! How well do you know Ruth? Answer this first question with y or n.');
 
@@ -18,6 +24,7 @@ while (askAgain) {
   } else if (answerClimate.toLowerCase() === 'y' || answerClimate.toUpperCase() === 'Y') {
     alert('YES I love nice (30 - 90 degrees Fahrenheit) weather.');
     askAgain = false;
+    score += 1;
   } else {
     alert('Hey, that\'s not y or n! Guess again ;)');
   }
@@ -30,6 +37,7 @@ var answerCareer = prompt('What is my target career field?');
 console.log('User guess on taret career field: ' + answerCareer);
 if(answerCareer.toLowerCase() === 'business analytics' || answerCareer.toUpperCase() === 'BUSINESS ANALYTICS'){
   alert('YES I love data, and I want to help customers feel in control of their decisions and evaluate strategy.');
+  score += 1;
 } else {
   alert('Not really, I\'m much more interested in business analytics.');
 }
@@ -49,6 +57,7 @@ while(keepAsking){
   var answerTemperature = prompt('In Fahrenheit degrees, what is a comfortable temperature for me?');
   if(answerTemperature > 30 && answerTemperature < 90){
     alert('That\'s right! Way to go!');
+    score += 1;
     keepAsking = false;
   } else if (answerTemperature > 90){
     alert('Feelin\' hot hot hot! Guess again!');
@@ -68,6 +77,7 @@ while (wrong){
     if(guessCity === correctCity[i]){
       wrong = false;
       alert('Yes! I have lived there, and it feels like home.');
+      score += 1;
     }
   }
 
@@ -75,3 +85,6 @@ while (wrong){
     alert('No, that\'s not where my heart is. Try again!');
   }
 }
+
+//Thank the user, tell them their score, end quiz
+alert('Thanks, ' + userName)

@@ -52,12 +52,10 @@ alert('Thanks for that vote of confidence ;) There is always more room to grow!'
 alert('Now we\'ll get to even trickier questions... Pay close attention!');
 
 var keepAsking = true;
-console.log(keepAsking);
 
 while(keepAsking){
   var answerTemperature = prompt('In Fahrenheit degrees, what is a comfortable temperature for me?');
-  console.log('User entered: ' + answerTemperature + 'degrees F');
-  console.log('Continue looping? ' + keepAsking);
+  console.log('User entered: ' + answerTemperature + ' degrees F');
   if (isNaN(answerTemperature)){
     alert('Enter a number. Remember this is \'Murica, and we use Fahrenheit degrees! Ex: 99');
   } else {
@@ -71,6 +69,7 @@ while(keepAsking){
       alert('BRRR! That is too cold for me, guess again!');
     }
   } //else
+  console.log('Continue looping through temperature question? ' + keepAsking);
 } //while
 console.log('Correct temperature input: ' + answerTemperature);
 
@@ -79,7 +78,7 @@ var correctCity = ['Portland', 'Chicago', 'San Antonio'];
 
 var wrong = true;
 while (wrong){
-  var guessCity = prompt('Where do I call home?');
+  var guessCity = prompt('Where do I call home? Hint: Move this window to read my Quick Bio.');
   for (var i = 0; i < correctCity.length; i++){
     if(guessCity === correctCity[i]){
       wrong = false;
@@ -91,7 +90,8 @@ while (wrong){
   if(wrong){
     alert('No, that\'s not where my heart is. Try again!');
   }
+  console.log('Correct city guess: ' + guessCity);
 }
-
+console.log('User quiz score: ' + score);
 //Thank the user, tell them their score, end quiz
 alert('Thanks, ' + userName + ', that\'s the end of the quiz. You scored ' + score + ' out of 5. Hopefully you know me a little bit better now.');

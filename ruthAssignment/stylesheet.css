@@ -1,0 +1,27 @@
+/*! Ruth's stylesheet for Code201, week 1, day 3
+ *Start 5/11/16
+ *About Me and quiz
+*/
+
+body {
+  background-color: #BEA0A2;
+  font-family: Georgia;
+}
+
+div {
+  background-color: #AAC1CA;
+  margin: 10%;
+}
+
+h2 {
+  text-decoration: underline;
+}
+
+li {
+  font-style: italic;
+}
+ /*
+PAST COLOR TRIES
+ light orange #FED78E
+
+*/

@@ -59,3 +59,19 @@ while(keepAsking){
 console.log('Correct temperature input: ' + answerTemperature);
 
 //Stretch requirement: answer with multiple correct options
+var correctCity = ['Portland', 'Chicago', 'San Antonio'];
+
+var wrong = true;
+while (wrong){
+  var guessCity = prompt('Where do I call home?');
+  for (var i = 0; i < correctCity.length; i++){
+    if(guessCity === correctCity[i]){
+      wrong = false;
+      alert('Yes! I have lived there, and it feels like home.');
+    }
+  }
+
+  if(wrong){
+    alert('No, that\'s not where my heart is. Try again!');
+  }
+}

@@ -6,6 +6,19 @@ var userName = prompt('Hi! What\'s your name?');
 
 //create a variable to keep track of user's score
 var score = 0;
+var game = [
+  //Question1
+  ['When choosing a home city, is climate important to me?', ['y','n'], ['Actually, I really like temperatures between 30 and 90 degrees Fahrenheit.',
+  'YES I love nice (30 - 90 degrees Fahrenheit) weather.','Hey, that\'s not y or n! Guess again ;)']]
+  //Question2
+['What is my target career field?', ['business analytics'], ['YES I love data, and I want to help customers feel in control of their decisions and evaluate strategy.', 'Not really, I\'m much more interested in business analytics.']],
+//Question3
+['Am I a competent developer?', 'Thanks for that vote of confidence ;) There is always more room to grow!'],
+//Question4
+['In Fahrenheit degrees, what is a comfortable temperature for me?', ['Enter a number. Remember this is \'Murica, and we use Fahrenheit degrees! Ex: 99', 'That\'s right! Way to go!', 'Feelin\' hot hot hot! Guess again!', 'BRRR! That is too cold for me, guess again!']],
+//Question5
+['Where do I call home? Hint: Move this window to read my Quick Bio.', ['Portland', 'Chicago', 'San Antonio'], ['Yes! I have lived there, and it feels like home.', 'No, that\'s not where my heart is. Try again!']]
+];
 
 //Ask questions
 alert('Pop quiz! How well do you know Ruth? Answer this first question with y or n.');
@@ -79,7 +92,7 @@ function Question4(){
 }
 
 function Question5(){
-//QUESITON 5: answer with multiple correct options
+//QUESTION 5: answer with multiple correct options
   var correctCity = ['Portland', 'Chicago', 'San Antonio'];
 
   var wrong = true;

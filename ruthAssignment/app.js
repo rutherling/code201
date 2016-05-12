@@ -6,6 +6,19 @@ var userName = prompt('Hi! What\'s your name?');
 
 //create a variable to keep track of user's score
 var score = 0;
+var game = [
+  //Question1
+  ['When choosing a home city, is climate important to me?', ['y','n'], ['Actually, I really like temperatures between 30 and 90 degrees Fahrenheit.',
+  'YES I love nice (30 - 90 degrees Fahrenheit) weather.','Hey, that\'s not y or n! Guess again ;)']]
+  //Question2
+['What is my target career field?', ['business analytics'], ['YES I love data, and I want to help customers feel in control of their decisions and evaluate strategy.', 'Not really, I\'m much more interested in business analytics.']],
+//Question3
+['Am I a competent developer?', 'Thanks for that vote of confidence ;) There is always more room to grow!'],
+//Question4
+['In Fahrenheit degrees, what is a comfortable temperature for me?', ['Enter a number. Remember this is \'Murica, and we use Fahrenheit degrees! Ex: 99', 'That\'s right! Way to go!', 'Feelin\' hot hot hot! Guess again!', 'BRRR! That is too cold for me, guess again!']],
+//Question5
+['Where do I call home? Hint: Move this window to read my Quick Bio.', ['Portland', 'Chicago', 'San Antonio'], ['Yes! I have lived there, and it feels like home.', 'No, that\'s not where my heart is. Try again!']]
+];
 
 //Ask questions
 alert('Pop quiz! How well do you know Ruth? Answer this first question with y or n.');
@@ -13,84 +26,91 @@ alert('Pop quiz! How well do you know Ruth? Answer this first question with y or
 var askAgain = true;
 
 //QUESTION 1: Ask about climate preferences. Evaluate Y/N.
-while (askAgain) {
-  var answerClimate = prompt('When choosing a home city, is climate important to me?');
-  console.log('User asssumption about climate preference: ' + answerClimate);
+function Question1(){
+  while (askAgain) {
+    var answerClimate = prompt('When choosing a home city, is climate important to me?');
+    console.log('User asssumption about climate preference: ' + answerClimate);
 
-  if (answerClimate.toLowerCase() === 'n' || answerClimate.toUpperCase() === 'N') {
-    alert('Actually, I really like temperatures between 30 and 90 degrees Fahrenheit.');
-    askAgain = false;
-    console.log('Value askAgain: ' + askAgain);
-  } else if (answerClimate.toLowerCase() === 'y' || answerClimate.toUpperCase() === 'Y') {
-    alert('YES I love nice (30 - 90 degrees Fahrenheit) weather.');
-    askAgain = false;
-    score += 1;
-  } else {
-    alert('Hey, that\'s not y or n! Guess again ;)');
+    if (answerClimate.toLowerCase() === 'n' || answerClimate.toUpperCase() === 'N') {
+      alert('Actually, I really like temperatures between 30 and 90 degrees Fahrenheit.');
+      askAgain = false;
+      console.log('Value askAgain: ' + askAgain);
+    } else if (answerClimate.toLowerCase() === 'y' || answerClimate.toUpperCase() === 'Y') {
+      alert('YES I love nice (30 - 90 degrees Fahrenheit) weather.');
+      askAgain = false;
+      score += 1;
+    } else {
+      alert('Hey, that\'s not y or n! Guess again ;)');
+    }
+
   }
-
 }
 
 //QUESTION 2: Ask about target career field
-
-var answerCareer = prompt('What is my target career field?');
-console.log('User guess on taret career field: ' + answerCareer);
-if(answerCareer.toLowerCase() === 'business analytics' || answerCareer.toUpperCase() === 'BUSINESS ANALYTICS'){
-  alert('YES I love data, and I want to help customers feel in control of their decisions and evaluate strategy.');
-  score += 1;
-} else {
-  alert('Not really, I\'m much more interested in business analytics.');
+function Question2(){
+  var answerCareer = prompt('What is my target career field?');
+  console.log('User guess on taret career field: ' + answerCareer);
+  if(answerCareer.toLowerCase() === 'business analytics' || answerCareer.toUpperCase() === 'BUSINESS ANALYTICS'){
+    alert('YES I love data, and I want to help customers feel in control of their decisions and evaluate strategy.');
+    score += 1;
+  } else {
+    alert('Not really, I\'m much more interested in business analytics.');
+  }
 }
 
 //QUESTION 3: Ask about skills
-
-var answerCompetence = prompt('Am I a competent developer?');
-console.log('User opinion on my competence: ' + answerCompetence);
-alert('Thanks for that vote of confidence ;) There is always more room to grow!');
+function Question3(){
+  var answerCompetence = prompt('Am I a competent developer?');
+  console.log('User opinion on my competence: ' + answerCompetence);
+  alert('Thanks for that vote of confidence ;) There is always more room to grow!');
+}
 
 //QUESTION 4: evaluate numeric input for too high or low
 alert('Now we\'ll get to even trickier questions... Pay close attention!');
+function Question4(){
+  var keepAsking = true;
 
-var keepAsking = true;
-
-while(keepAsking){
-  var answerTemperature = prompt('In Fahrenheit degrees, what is a comfortable temperature for me?');
-  console.log('User entered: ' + answerTemperature + ' degrees F');
-  if (isNaN(answerTemperature)){
-    alert('Enter a number. Remember this is \'Murica, and we use Fahrenheit degrees! Ex: 99');
-  } else {
-    if(answerTemperature > 30 && answerTemperature < 90){
-      alert('That\'s right! Way to go!');
-      score += 1;
-      keepAsking = false;
-    } else if (answerTemperature > 90){
-      alert('Feelin\' hot hot hot! Guess again!');
+  while(keepAsking){
+    var answerTemperature = prompt('In Fahrenheit degrees, what is a comfortable temperature for me?');
+    console.log('User entered: ' + answerTemperature + ' degrees F');
+    if (isNaN(answerTemperature)){
+      alert('Enter a number. Remember this is \'Murica, and we use Fahrenheit degrees! Ex: 99');
     } else {
-      alert('BRRR! That is too cold for me, guess again!');
+      if(answerTemperature > 30 && answerTemperature < 90){
+        alert('That\'s right! Way to go!');
+        score += 1;
+        keepAsking = false;
+      } else if (answerTemperature > 90){
+        alert('Feelin\' hot hot hot! Guess again!');
+      } else {
+        alert('BRRR! That is too cold for me, guess again!');
+      }
+    } //else
+    console.log('Continue looping through temperature question? ' + keepAsking);
+  } //while
+  console.log('Correct temperature input: ' + answerTemperature);
+}
+
+function Question5(){
+//QUESTION 5: answer with multiple correct options
+  var correctCity = ['Portland', 'Chicago', 'San Antonio'];
+
+  var wrong = true;
+  while (wrong){
+    var guessCity = prompt('Where do I call home? Hint: Move this window to read my Quick Bio.');
+    for (var i = 0; i < correctCity.length; i++){
+      if(guessCity === correctCity[i]){
+        wrong = false;
+        alert('Yes! I have lived there, and it feels like home.');
+        score += 1;
+      }
     }
-  } //else
-  console.log('Continue looping through temperature question? ' + keepAsking);
-} //while
-console.log('Correct temperature input: ' + answerTemperature);
 
-//QUESITON 5: answer with multiple correct options
-var correctCity = ['Portland', 'Chicago', 'San Antonio'];
-
-var wrong = true;
-while (wrong){
-  var guessCity = prompt('Where do I call home? Hint: Move this window to read my Quick Bio.');
-  for (var i = 0; i < correctCity.length; i++){
-    if(guessCity === correctCity[i]){
-      wrong = false;
-      alert('Yes! I have lived there, and it feels like home.');
-      score += 1;
+    if(wrong){
+      alert('No, that\'s not where my heart is. Try again!');
     }
+    console.log('Correct city guess: ' + guessCity);
   }
-
-  if(wrong){
-    alert('No, that\'s not where my heart is. Try again!');
-  }
-  console.log('Correct city guess: ' + guessCity);
 }
 console.log('User quiz score: ' + score);
 //Thank the user, tell them their score, end quiz

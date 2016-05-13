@@ -46,7 +46,7 @@ function testSumAndMultiply() {
       console.log('Sum function passed');
       countCorrect++;
     } else {
-      console.logconsole.log('Sum function failed');
+      console.log('Sum function failed');
     }
   } else {
     console.log('Fail. No such function');
@@ -80,3 +80,5 @@ function testMultiplyArray() {
     console.log('Fail. No such function');
   }
 };
+
+console.log('Passed ' + countCorrect + ' tests!');

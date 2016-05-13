@@ -1,5 +1,3 @@
-/* global variable declarations for problems 1 through 5*/
-
 //Problem 1: sum
 function sum(a, b) {
     var s = a + b;
@@ -13,9 +11,10 @@ function multiply(a, b) {
 };
 
 //Problem 3: sum and multiplying
-function sumAndMultiply(a, b) {
-    var s = a + b;
-    var m = a * b;
+function sumAndMultiply(a, b, c) {
+  var s = sum(sum(a,b),c)
+  var m = multiply(multiply(a,b),c)
+
     return [s, m];
 };
 
@@ -23,16 +22,16 @@ function sumAndMultiply(a, b) {
 function sumArray(a) { //a must be an array. maybe we can test for what happens if you do not enter an array?
     var partialSum = 0;
     for (var i = 0; i < a.length; i++) {
-        partialSum = partialSum + a[i];
-        return partialSum;
+        partialSum = sum(partialSum,a[i]);
     }
+    return partialSum;
 };
 
 //Problem 5: multiplyArray
 function multiplyArray(a) {
     var partialProduct = 1;
     for (var i = 0; i < a.length; i++) {
-        partialProduct = partialProduct * a[i];
-        return partialProduct;
+        partialProduct = multiply(partialProduct,a[i]);
     }
+    return partialProduct;
 };

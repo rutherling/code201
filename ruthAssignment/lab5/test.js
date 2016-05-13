@@ -41,8 +41,8 @@ function testMultiply() {
 //Problem 3
 function testSumAndMultiply() {
     if (typeof sumAndMultiply != 'undefined') {
-        var sm = sumAndMultiply(147, 256);
-        if ([403, 37632] === sm) {
+        var sm = sumAndMultiply(147, 256, 14);
+        if ([417, 526848] === sm) {
             console.log('Sum function passed');
             countCorrect++;
         } else {
@@ -55,7 +55,7 @@ function testSumAndMultiply() {
 //Problem 4
 function testSumArray() {
     if (typeof sumArray != 'undefined') {
-        var sa = sumArray(147, 256, 0, 14); //Call the function written in calculate.js
+        var sa = sumArray([147, 256, 0, 14]); //Call the function written in calculate.js
         if (417 === sa) {
             console.log('sumArray function passed');
             countCorrect++;
@@ -69,7 +69,7 @@ function testSumArray() {
 //Problem 5
 function testMultiplyArray() {
     if (typeof multiplyArray != 'undefined') {
-        var ma = multiplyArray(147, 256, 2, 14); //Call the function written in calculate.js
+        var ma = multiplyArray([147, 256, 2, 14]); //Call the function written in calculate.js
         if (1053696 === ma) {
             console.log('multiplyArray function passed');
             countCorrect++;

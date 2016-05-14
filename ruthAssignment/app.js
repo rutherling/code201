@@ -63,6 +63,7 @@ function question1(){
 
 //QUESTION 2: Ask about target career field
 function question2(){
+  window.scrollTo(0,300);
   var answerCareer = prompt(game[1][0]);
   //Log their answer and display it on the page.
   console.log('User guess on taret career field: ' + answerCareer);
@@ -88,17 +89,16 @@ function question3(){
   confidence.textContent = answerCompetence;
   var auto3 = document.getElementById('auto3');
   auto3.textContent = game[2][1];
-}
-
+  window.scrollTo(0,300);
+};
 //QUESTION 4: evaluate numeric input for too high or low
 function question4(){
+  window.scrollTo(0,300);
   var keepAsking = true;
   while(keepAsking){
-
     var answerTemperature = prompt(game[3][0]);
     var comfort = document.getElementById('comfort');
     comfort.textContent = answerTemperature;
-
     console.log('User entered: ' + answerTemperature + ' degrees F');
     if (isNaN(answerTemperature)){
       var auto4 = document.getElementById('auto4');
@@ -124,13 +124,14 @@ function question4(){
 
 function question5(){
 //QUESTION 5: answer with multiple correct options
-  var correctCity = prompt(game[4][0]);
-  var home = document.getElementById('home');
-  home.textContent = correctCity;
 
   var wrong = true;
+  window.scrollTo(0,500);
   while (wrong){
-    //I don't remember what this used to do: var guessCity = prompt(game[4][0]);
+    var correctCity = prompt(game[4][0]);
+    var heart = document.getElementById('heart');
+    console.log(heart);
+    heart.textContent = correctCity;
 
     for (var i = 0; i < game[4][1].length; i++){
       if(correctCity === game[4][1][i]){

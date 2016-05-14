@@ -23,8 +23,10 @@ function sumArray(a) { //a must be an array. maybe we can test for what happens 
   var partialSum = 0;
   for (var i = 0; i < a.length; i++) {
     partialSum = sum(partialSum,a[i]);
+
   }
-  return partialSum;
+  var finalSum = partialSum;
+  return finalSum;
 };
 
 //Problem 5: multiplyArray

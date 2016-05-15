@@ -23,7 +23,6 @@ function testSum() {
   } else {
     console.log('Fail. No such function');
   }
-  console.log('Sum result: ' + s);
 };
 //Problem 2
 function testMultiply() {
@@ -38,22 +37,26 @@ function testMultiply() {
   } else {
     console.log('Fail. No such function');
   }
-  console.log('Multiply result: ' + m);
 };
 //Problem 3
 function testSumAndMultiply() {
   if (typeof sumAndMultiply != 'undefined') {
     var sm = sumAndMultiply(147, 256, 14);
-    if ([417, 526848] === sm) {
-      console.log('Sum function passed');
+    var correctAnswer = [417,526848];
+    var thisEqualsThat = 0;
+    for (var i = 0; i < sm.length; i++) {
+      if(sm[i] === correctAnswer[i])
+        thisEqualsThat++;
+    }
+    if (thisEqualsThat == sm.length) {
+      console.log('sumAndMultiply function passed');
       countCorrect++;
     } else {
-      console.log('Sum function failed');
+      console.log('sumAndMultiply function failed');
     }
   } else {
     console.log('Fail. No such function');
   }
-  console.log('sumAndMultiply SUM result: ' + sm[0] + '. MULTIPLY result: ' + sm[1]);
 };
 //Problem 4
 function testSumArray() {

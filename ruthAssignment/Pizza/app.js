@@ -30,10 +30,24 @@ function getValues(minPizza, maxPizza, minDelivery){ //intentionally did not inc
   var calcDriver = Math.ceil(calcDelivery / 3);
   console.log('Count of drivers needed to make these deliveries: ' + calcDriver);
 //Return an object with the count of pizzas, count of deliveries, and count of drivers.
+//Later the next function will push countPizza, countDelivery, and countDriver to an array.
   return {
     countPizza: calcPizza,
     countDelivery: calcDelivery,
     countDriver: calcDriver
   };
 }
-getValues(0,8,4);
+
+//Loop through each neighborhood
+//Loop through each hour
+//8am to 10am
+
+//11am to 1pm
+
+//2pm to 4pm
+
+//5pm to 7pm
+
+//8pm to 10pm
+
+//11pm to 2am

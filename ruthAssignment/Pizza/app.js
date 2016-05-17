@@ -11,7 +11,7 @@ var demand = [
 ];
 console.table(demand);
 
-var hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1, 2];
+var hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1];//pizzerias close at 2am.
 console.log('Hours of Operation: ' + hours);
 
 //Array of pizza locations
@@ -59,12 +59,11 @@ function storeValues(){
     };//end define pizzeria object
       //push the neighborhood object to an array
     finalArray.push(pizzeria);
+    //create array to store the hourly production and driver needs within the neighborhood object
+    var singleStats = [];
     //inner loop generates the countPizza, countDelivery, and countDriver by iterating through 18 hours of operation.
     for(j = 0; j < hours.length; j++){
       console.log('Inner loop started.');
-        //create array to store the hourly production and driver needs within the neighborhood object
-      var singleStats = [];
-
         //Look through six scenarios
 
         //8am to 10am
@@ -103,12 +102,13 @@ function storeValues(){
       singleStats.push(getValues(minPizza, maxPizza, minDelivery));
       //var pizzeriaValues = getValues(minPizza, maxPizza, minDelivery); //add property to pizzeria object.
         //the above line also runs getValues and returns an object
-        //push it to the array
-      pizzeria.Values = singleStats;
+
       //hourStats[i].Values;////////////I don't think i need this?
         //update the value for the hourValues key (hourStats)
 
     }//end inner for loop
+    //push all 18 values to the array
+    pizzeria.Values = singleStats;
   }//end outer for loop
   console.table(finalArray);
 }; //end storeValues

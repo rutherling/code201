@@ -49,13 +49,6 @@ function getValues(minPizza, maxPizza, minDelivery, maxDelivery){ //compare maxD
   return hourStats;
 }
 
-//Function to assess weekly sales and operations.
-//Function to prouduce a sum of six days' operation for all neighborhood locations.
-//function weeklyBusiness(){
-
-//for (var ii = 0; ii < 6; ii++) {
-
-//Function to push countPizza, countDelivery, and countDriver every hour, for each neighborhood
 function storeValues(){
   //create empty array to store all the neighborhoods.
   var finalArray = [];
@@ -147,12 +140,33 @@ function storeValues(){
   }//end outer for loop
   console.table(finalArray);
   console.log(finalArray[0].totalPizza);
+  return finalArray;
 }; //end storeValues
 
-//run storeValues
-storeValues();
+//Function to assess weekly sales and operations.
+//Function to prouduce a sum of six days' operation for all neighborhood locations.
+function weeklyBusiness(){
+  //Create empty arrays for each total you need. Put all the arrays into a parent array.
+  var weeklyPizza = [];
+  var weeklyDelivery = [];
+  var weeklyDriver = [];
 
-//finalArray[i]
-//}//end for loop weeklyBusiness
-//}; //end weeklyBusiness
-//weeklyBusiness(); //run the function ;D
+  var weeklyOperations = [];
+
+  for (var ii = 0; ii < 6; ii++) {
+
+//Function to push countPizza, countDelivery, and countDriver every hour, for each neighborhood
+//run storeValues
+  var finalArray = storeValues();
+
+    weeklyPizza.push(finalArray[ii].totalPizza);
+    weeklyDelivery.push(finalArray[ii].totalDelivery);
+    weeklyDriver.push(finalArray[ii].totalDriver);
+}//end for loop weeklyBusiness
+    weeklyOperations.push(weeklyPizza, weeklyDelivery, weeklyDriver);
+    console.log('Weekly business ran.');
+    console.log(weeklyOperations);
+    return weeklyOperations;
+
+}; //end weeklyBusiness
+weeklyBusiness(); //run the function ;D

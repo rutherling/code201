@@ -25,14 +25,17 @@ function getValues(minPizza, maxPizza, minDelivery, maxDelivery){ //compare maxD
   console.log('Randomly generated pizzas this hour: ' + calcPizza);
 
 //Use pizza's calc as delivery's max for that specific hour. Delivery min is in the array.
-  var calcDelivery = function(){//start anonymous function
+  var calculateDelivery = function(){//start calculate Delivery function
+    var calcDelivery;
     if(maxDelivery < calcPizza){
-      Math.floor(Math.random() * (1 + maxDelivery - minDelivery)) + minDelivery; //maxDelivery is the ceiling
+      calcDelivery = Math.floor(Math.random() * (1 + maxDelivery - minDelivery)) + minDelivery; //maxDelivery is the ceiling
     } else {
-      Math.floor(Math.random() * (1 + calcPizza - minDelivery)) + minDelivery;
+      calcDelivery = Math.floor(Math.random() * (1 + calcPizza - minDelivery)) + minDelivery;
     }//end else
-    console.log('Randomly generated deliveries this hour: ' + calcDelivery);
-};//end anonymous function
+    return calcDelivery;
+  };//end anonymous function
+  var calcDelivery = calculateDelivery();
+  console.log('Randomly generated deliveries this hour: ' + calcDelivery);
 //Use deliveries to determine the count of drivers. 1 driver has capacity of 3 deliveries.
   var calcDriver = Math.ceil(calcDelivery / 3);
   console.log('Count of drivers needed to make these deliveries: ' + calcDriver);
@@ -45,8 +48,6 @@ function getValues(minPizza, maxPizza, minDelivery, maxDelivery){ //compare maxD
    };
   return hourStats;
 }
-var dummy = getValues(0,4,0);
-console.log(dummy);
 
 //Function to assess weekly sales and operations.
 //Function to prouduce a sum of six days' operation for all neighborhood locations.
@@ -117,7 +118,7 @@ function storeValues(){
         maxDelivery = demand[5][4];
       }//end else
       //create a dummy object to equal the output of getValues.
-      var dummy = getValues(minPizza, maxPizza, minDelivery);
+      var dummy = getValues(minPizza, maxPizza, minDelivery, maxDelivery);
 
       //each neighborhood will have an array of 18 sets (pizza, delivery, driver)
       //push to the array that stores the object for each hours value

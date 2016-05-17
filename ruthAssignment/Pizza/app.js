@@ -38,7 +38,7 @@ function getValues(minPizza, maxPizza, minDelivery){ //intentionally did not inc
     countPizza: calcPizza,
     countDelivery: calcDelivery,
     countDriver: calcDriver
-  };
+   };
   return hourStats;
 }
 var dummy = getValues(0,4,0);
@@ -49,6 +49,9 @@ function storeValues(){
   //create empty array to store all the neighborhoods.
   var finalArray = [];
 
+
+
+
   //outer loop iterates through neighborhoods
   for(i = 0; i < neighborhood.length; i++){
     console.log('Outer loop started.');
@@ -57,10 +60,13 @@ function storeValues(){
       neighborhood: neighborhood[i],
 
     };//end define pizzeria object
-      //push the neighborhood object to an array
-    finalArray.push(pizzeria);
+
     //create array to store the hourly production and driver needs within the neighborhood object
     var singleStats = [];
+    //Daily totals: as you go through the loop, add the hourly pizza, deliveries, and drivers for each location.
+    var pizzaTotal = 0;
+    var deliveryTotal = 0;
+    var driverTotal = 0;
     //inner loop generates the countPizza, countDelivery, and countDriver by iterating through 18 hours of operation.
     for(j = 0; j < hours.length; j++){
       console.log('Inner loop started.');
@@ -77,11 +83,11 @@ function storeValues(){
         maxPizza = demand[1][2];
         minDelivery = demand[1][3];
       //2pm to 4pm
-    } else if (j < 9){
+      } else if (j < 9){
         minPizza = demand[2][1];
         maxPizza = demand[2][2];
         minDelivery = demand[2][3];
-        //5pm to 7pm
+          //5pm to 7pm
       } else if (j < 12){
         minPizza = demand[3][1];
         maxPizza = demand[3][2];
@@ -97,21 +103,38 @@ function storeValues(){
         maxPizza = demand[5][2];
         minDelivery = demand[5][3];
       }//end else
+      //create a dummy object to equal the output of getValues.
+      var dummy = getValues(minPizza, maxPizza, minDelivery);
+
       //each neighborhood will have an array of 18 sets (pizza, delivery, driver)
       //push to the array that stores the object for each hours value
-      singleStats.push(getValues(minPizza, maxPizza, minDelivery));
+      singleStats.push(dummy);
       //var pizzeriaValues = getValues(minPizza, maxPizza, minDelivery); //add property to pizzeria object.
         //the above line also runs getValues and returns an object
 
+        //use dummy.key to add a value to pizzaTotal, deliveryTotal, and driverTotal.
+      pizzaTotal += dummy.countPizza;
+      deliveryTotal += dummy.countDelivery;
+      driverTotal += dummy.countDriver;
       //hourStats[i].Values;////////////I don't think i need this?
         //update the value for the hourValues key (hourStats)
 
     }//end inner for loop
     //push all 18 values to the array
     pizzeria.Values = singleStats;
+    //create another property for total pizzas
+    pizzeria.totalPizza = pizzaTotal;
+    //create another property for total deliveries
+    pizzeria.totalDelivery = deliveryTotal;
+    //create another property for total drivers
+    pizzeria.totalDriver = driverTotal;
+    //push the neighborhood object to an array
+    finalArray.push(pizzeria);
   }//end outer for loop
   console.table(finalArray);
 }; //end storeValues
 
 //run storeValues
 storeValues();
+
+//Function to prouduce a sum of six days' operation for all neighborhood locations.

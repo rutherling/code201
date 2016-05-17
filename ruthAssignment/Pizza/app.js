@@ -20,15 +20,20 @@ console.log('Neighborhoods: ' + neighborhood);
 
 //Function to return pizzas, deliveries, and drivers to be used for a specified range of hours
 //Random generation of pizza's count, given min and max for that hour
-function getValues(minPizza, maxPizza, minDelivery){ //intentionally did not include maxDelivery because
-  //calcPizza is the delivery ceiling.
-  var calcPizza = Math.floor(Math.random() * (maxPizza - minPizza + 1));
+function getValues(minPizza, maxPizza, minDelivery, maxDelivery){ //compare maxDelivery to calcPizza for ceiling
+  var calcPizza = Math.floor(Math.random() * (maxPizza - minPizza + 1)) + minPizza;
   console.log('Randomly generated pizzas this hour: ' + calcPizza);
 
 //Use pizza's calc as delivery's max for that specific hour. Delivery min is in the array.
-  var calcDelivery = Math.floor(Math.random() * (1 + calcPizza - minDelivery));
+  var calcDelivery = function(){
+    if(maxDelivery < calcPizza){
+      Math.floor(Math.random() * (1 + maxDelivery - minDelivery)) + minDelivery; //maxDelivery is the ceiling
+    } else {
+      Math.floor(Math.random() * (1 + calcPizza - minDelivery)) + minDelivery;
+    }//end else
+    }//end if
   console.log('Randomly generated deliveries this hour: ' + calcDelivery);
-
+};//end anonymous function
 //Use deliveries to determine the count of drivers. 1 driver has capacity of 3 deliveries.
   var calcDriver = Math.ceil(calcDelivery / 3);
   console.log('Count of drivers needed to make these deliveries: ' + calcDriver);
@@ -77,31 +82,37 @@ function storeValues(){
         minPizza = demand[0][1];
         maxPizza = demand[0][2];
         minDelivery = demand[0][3];
+        maxDelivery = demand[0][4];
         //11am to 1pm
       } else if (j < 6){
         minPizza = demand[1][1];
         maxPizza = demand[1][2];
         minDelivery = demand[1][3];
+        maxDelivery = demand[1][4];
       //2pm to 4pm
       } else if (j < 9){
         minPizza = demand[2][1];
         maxPizza = demand[2][2];
         minDelivery = demand[2][3];
+        maxDelivery = demand[2][4];
           //5pm to 7pm
       } else if (j < 12){
         minPizza = demand[3][1];
         maxPizza = demand[3][2];
         minDelivery = demand[3][3];
+        maxDelivery = demand[3][4];
         //8pm to 10pm
       } else if (j < 15){
         minPizza = demand[4][1];
         maxPizza = demand[4][2];
         minDelivery = demand[4][3];
+        maxDelivery = demand[4][4];
         //11pm to 2am
       } else {
         minPizza = demand[5][1];
         maxPizza = demand[5][2];
         minDelivery = demand[5][3];
+        maxDelivery = demand[5][4];
       }//end else
       //create a dummy object to equal the output of getValues.
       var dummy = getValues(minPizza, maxPizza, minDelivery);

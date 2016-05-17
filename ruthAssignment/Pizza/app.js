@@ -25,14 +25,13 @@ function getValues(minPizza, maxPizza, minDelivery, maxDelivery){ //compare maxD
   console.log('Randomly generated pizzas this hour: ' + calcPizza);
 
 //Use pizza's calc as delivery's max for that specific hour. Delivery min is in the array.
-  var calcDelivery = function(){
+  var calcDelivery = function(){//start anonymous function
     if(maxDelivery < calcPizza){
       Math.floor(Math.random() * (1 + maxDelivery - minDelivery)) + minDelivery; //maxDelivery is the ceiling
     } else {
       Math.floor(Math.random() * (1 + calcPizza - minDelivery)) + minDelivery;
     }//end else
-    }//end if
-  console.log('Randomly generated deliveries this hour: ' + calcDelivery);
+    console.log('Randomly generated deliveries this hour: ' + calcDelivery);
 };//end anonymous function
 //Use deliveries to determine the count of drivers. 1 driver has capacity of 3 deliveries.
   var calcDriver = Math.ceil(calcDelivery / 3);
@@ -49,13 +48,16 @@ function getValues(minPizza, maxPizza, minDelivery, maxDelivery){ //compare maxD
 var dummy = getValues(0,4,0);
 console.log(dummy);
 
+//Function to assess weekly sales and operations.
+//Function to prouduce a sum of six days' operation for all neighborhood locations.
+//function weeklyBusiness(){
+
+//for (var ii = 0; ii < 6; ii++) {
+
 //Function to push countPizza, countDelivery, and countDriver every hour, for each neighborhood
 function storeValues(){
   //create empty array to store all the neighborhoods.
   var finalArray = [];
-
-
-
 
   //outer loop iterates through neighborhoods
   for(i = 0; i < neighborhood.length; i++){
@@ -143,9 +145,13 @@ function storeValues(){
     finalArray.push(pizzeria);
   }//end outer for loop
   console.table(finalArray);
+  console.log(finalArray[0].totalPizza);
 }; //end storeValues
 
 //run storeValues
 storeValues();
 
-//Function to prouduce a sum of six days' operation for all neighborhood locations.
+//finalArray[i]
+//}//end for loop weeklyBusiness
+//}; //end weeklyBusiness
+//weeklyBusiness(); //run the function ;D

@@ -170,3 +170,21 @@ function weeklyBusiness(){
 
 }; //end weeklyBusiness
 weeklyBusiness(); //run the function ;D
+
+//Yet another function to loop through and add the six days together.
+//Returns totalPizza, totalDelivery, and totalDriver for all locations.
+function sumOperations(a){ //accepts a two-dimensional array.
+
+  var operationSum = [];
+  //loop through the three elements in weeklyOperations
+  for (var ii = 0; ii < a.length; ii++) { //ii represents pizza, delivery, and driver
+    var partialSum = 0;
+    for (var k = 0; k < 6; k++) { //k represents one day of the operating week.
+      partialSum += a[ii][k];
+    }//end inner for
+    operationSum.push(partialSum);
+
+  }//end outer for
+  return operationSum;
+}//end sumOperations
+sumOperations(weeklyBusiness);

@@ -13,7 +13,9 @@ var newTR = document.createElement('tr');
 //Make <tr> a child of <table>
 newTable.appendChild(newTR);
 
-var locationHour = storeValues();//location by hour from calculate.js
+//var locationHour = storeValues();//location by hour from calculate.js
+
+var locationHour = ['sample',1,5,9];
 
 function showTable() {
   var tds = []; //empty array for table data. This function converts array items into table data.

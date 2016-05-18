@@ -9,14 +9,11 @@ var demand = [
   ['8pm to 11pm', 12, 31, 5, 12],
   ['11pm to 2am', 5, 20, 5, 11]
 ];
-console.table(demand);
 
 var hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1];//pizzerias close at 2am.
-console.log('Hours of Operation: ' + hours);
 
 //Array of pizza locations
 var neighborhood = ['Hillsboro', 'Pearl', 'DowntownPDX', 'Buckman', 'PDXairport', 'Clackamas'];
-console.log('Neighborhoods: ' + neighborhood);
 
 //Function to return pizzas, deliveries, and drivers to be used for a specified range of hours
 //Random generation of pizza's count, given min and max for that hour
@@ -55,7 +52,6 @@ function storeValues(){
 
   //outer loop iterates through neighborhoods
   for(i = 0; i < neighborhood.length; i++){
-    console.log('Outer loop started.');
     //create an object for each neighborhood pizzeria
     var pizzeria = {
       neighborhood: neighborhood[i],
@@ -70,7 +66,6 @@ function storeValues(){
     var driverTotal = 0;
     //inner loop generates the countPizza, countDelivery, and countDriver by iterating through 18 hours of operation.
     for(j = 0; j < hours.length; j++){
-      console.log('Inner loop started.');
         //Look through six scenarios
 
         //8am to 10am
@@ -139,7 +134,6 @@ function storeValues(){
     finalArray.push(pizzeria);
   }//end outer for loop
   console.table(finalArray);
-  console.log(finalArray[0].totalPizza);
   return finalArray;
 }; //end storeValues
 
@@ -164,13 +158,12 @@ function weeklyBusiness(){
     weeklyDriver.push(finalArray[ii].totalDriver);
 }//end for loop weeklyBusiness
     weeklyOperations.push(weeklyPizza, weeklyDelivery, weeklyDriver);
-    console.log('Weekly business ran.');
     console.log(weeklyOperations);
     return weeklyOperations;
 
 }; //end weeklyBusiness
 var a = weeklyBusiness(); //run the function ;D
-
+console.log(a);
 //Yet another function to loop through and add the six days together.
 //Returns totalPizza, totalDelivery, and totalDriver for all locations.
 function sumOperations(a){ //accepts a two-dimensional array.
@@ -187,4 +180,6 @@ function sumOperations(a){ //accepts a two-dimensional array.
   }//end outer for
   return operationSum;
 }//end sumOperations
-sumOperations(weeklyBusiness);
+
+var b = sumOperations(a);
+console.log(b);

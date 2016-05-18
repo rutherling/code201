@@ -1,11 +1,12 @@
 //write information from calculate.js to populate the index.html with #"happy pizza odysseys"
 
-var sales = document.getElementById('sales');
-var container = sumOperations(weeklyBusiness);
-sales.textContent = ("Does this write?" + container[0]);
-
-//testing, above doesn't work.
+//testing, sales id doesn't work because sumOperations is not defined.
 var softball = document.getElementById('storeHours');
 softball.textContent = "Herro?";
+
+var sales = document.getElementById('sales');
+sales.textContent = b[0] + " happy pizza odysseys this week!";
+
+
 //write information from calculate.js to populate sales-data.html with hourly sales data,
 //weekly sales data, and total operational information from all locations in tables.

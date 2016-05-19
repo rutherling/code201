@@ -1,3 +1,56 @@
 h1{
   font-family: 'Poiret One', cursive;
 }
+
+.woody-brown {
+  background-color: rgba(63, 40, 29, 1);
+}
+
+.petite-orchid {
+  background-color: rgba(211, 143, 112, 1);
+}
+
+.au-chico {
+  background-color: rgba(138, 82, 63, 1);
+}
+
+.sirocco {
+  background-color: rgba(118, 134, 151, 1);
+}
+
+.cascade {
+  background-color: rgba(143, 173, 133, 1);
+}
+
+h1{
+  font-family: 'Poiret One', cursive;
+  display: block;
+  border: dotted rgba(211, 143, 112, 1) 4pt;
+  border-radius: 10pt;
+  text-align: center;
+}
+
+ul {
+  display: inline;
+}
+
+table {
+  background-color: rgba(143, 173, 133, 1);
+  color: rgba(63, 40, 29, 1);
+}
+
+td {
+  border: rgba(118, 134, 151, 1) 1pt solid;
+}
+
+img {
+  opacity: 0.4;
+}
+
+fieldset {
+  padding: 30px;
+  margin: auto;
+  width: 50%;
+  position: relative;
+>>>>>>> 6489051ba83eedf35b58e9ca91b6a961d9cf2ca1
+}

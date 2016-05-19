@@ -48,7 +48,7 @@ var demand = [
 
 var hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1];//pizzerias close at 2am.
 
-//Array of pizza locations
+//Array of pizza locations. in calculate2.js, these are the property of the Demand object.
 var neighborhood = ['Hillsboro', 'Pearl', 'DowntownPDX', 'Buckman', 'PDXairport', 'Clackamas'];
 
 //Function to return pizzas, deliveries, and drivers to be used for a specified range of hours

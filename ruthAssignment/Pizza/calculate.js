@@ -2,17 +2,53 @@
 //[time slot, min production, max production, min deliveries, max deliveries]
 //I might not need this if I put hte max and min in the For loop.
 var demand = [
-  ['8am to 11am', 0, 4, 0, 4],
+  //Hillsboro
+  [['8am to 11am', 0, 4, 0, 4],
   ['11am to 2pm', 0, 7, 0, 4],
   ['2pm to 5pm', 2, 15, 1, 4],
   ['5pm to 8pm', 15, 35, 3, 8],
   ['8pm to 11pm', 12, 31, 5, 12],
-  ['11pm to 2am', 5, 20, 5, 11]
+  ['11pm to 2am', 5, 20, 5, 11]],
+  //Pearl
+  [['8am to 11am', 1, 7, 1, 3],
+  ['11am to 2pm', 5, 9, 2, 8],
+  ['2pm to 5pm', 2, 13, 1, 6],
+  ['5pm to 8pm', 18, 32, 3, 9],
+  ['8pm to 11pm', 5, 12, 1, 3],
+  ['11pm to 2am', 8, 20, 6, 16]],
+  //DowntownPDX
+  [['8am to 11am', 0, 4, 0, 4],
+  ['11am to 2pm', 0, 7, 0, 4],
+  ['2pm to 5pm', 2, 15, 1, 4],
+  ['5pm to 8pm', 10, 26, 4, 6],
+  ['8pm to 11pm', 8, 22, 7, 15],
+  ['11pm to 2am', 0, 8, 0, 2]],
+  //Buckman
+  [['8am to 11am', 0, 4, 0, 4],
+  ['11am to 2pm', 0, 7, 0, 4],
+  ['2pm to 5pm', 5, 15, 0, 4],
+  ['5pm to 8pm', 25, 39, 13, 18],
+  ['8pm to 11pm', 22, 36, 5, 22],
+  ['11pm to 2am', 16, 31, 5, 21]],
+  //PDXairport
+  [['8am to 11am', 2, 7, 0, 0],
+  ['11am to 2pm', 3, 9, 0, 0],
+  ['2pm to 5pm', 1, 5, 0, 0],
+  ['5pm to 8pm', 5, 13, 0, 0],
+  ['8pm to 11pm', 22, 42, 0, 0],
+  ['11pm to 2am', 15, 21, 0, 0]],
+  //Clackamas
+  [['8am to 11am', 0, 4, 0, 4],
+  ['11am to 2pm', 0, 7, 0, 4],
+  ['2pm to 5pm', 2, 15, 1, 4],
+  ['5pm to 8pm', 6, 19, 5, 9],
+  ['8pm to 11pm', 4, 8, 2, 5],
+  ['11pm to 2am', 2, 5, 2, 4]],
 ];
 
 var hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1];//pizzerias close at 2am.
 
-//Array of pizza locations
+//Array of pizza locations. in calculate2.js, these are the property of the Demand object.
 var neighborhood = ['Hillsboro', 'Pearl', 'DowntownPDX', 'Buckman', 'PDXairport', 'Clackamas'];
 
 //Function to return pizzas, deliveries, and drivers to be used for a specified range of hours
@@ -46,6 +82,7 @@ function getValues(minPizza, maxPizza, minDelivery, maxDelivery){ //compare maxD
   return hourStats;
 }
 
+//function Pizzeria(pizzeria, pizzaTotal, deliveryTotal, driverTotal){
 function storeValues(){
   //create empty array to store all the neighborhoods.
   var finalArray = [];
@@ -122,6 +159,7 @@ function storeValues(){
         //update the value for the hourValues key (hourStats)
 
     }//end inner for loop
+    //add properties to the object.
     //push all 18 values to the array
     pizzeria.Values = singleStats;
     //create another property for total pizzas
@@ -136,6 +174,7 @@ function storeValues(){
   console.table(finalArray);
   return finalArray;
 }; //end storeValues
+//} //end object constructor function
 
 //Function to assess weekly sales and operations.
 //Function to prouduce a sum of six days' operation for all neighborhood locations.

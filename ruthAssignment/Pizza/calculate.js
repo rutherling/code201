@@ -46,6 +46,7 @@ function getValues(minPizza, maxPizza, minDelivery, maxDelivery){ //compare maxD
   return hourStats;
 }
 
+//function Pizzeria(pizzeria, pizzaTotal, deliveryTotal, driverTotal){
 function storeValues(){
   //create empty array to store all the neighborhoods.
   var finalArray = [];
@@ -122,6 +123,7 @@ function storeValues(){
         //update the value for the hourValues key (hourStats)
 
     }//end inner for loop
+    //add properties to the object.
     //push all 18 values to the array
     pizzeria.Values = singleStats;
     //create another property for total pizzas
@@ -136,6 +138,7 @@ function storeValues(){
   console.table(finalArray);
   return finalArray;
 }; //end storeValues
+//} //end object constructor function
 
 //Function to assess weekly sales and operations.
 //Function to prouduce a sum of six days' operation for all neighborhood locations.

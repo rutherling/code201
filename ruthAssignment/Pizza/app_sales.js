@@ -9,7 +9,7 @@ var locationHour = storeValues();//location by hour from calculate.js
 console.log(locationHour);
 //var locationHour = ['sample',1,5,9];
 
-function showTable() {
+function hourlyTable() {
   var neighborhoodTable = []; //empty array for table data. This function converts finalArray items into a table for display.
   for(ii = 0; ii < locationHour.length; ii++){
     var neighborhoodTR = document.createElement('tr');//each neighborhood gets its own row.
@@ -56,7 +56,39 @@ function showTable() {
 };//end showTable function
 
 //var myTDs =
-showTable();
+hourlyTable();
 
 // Append <table> to DOM tree
 operations.appendChild(parentTable);
+
+//////////////////repeat for weeklyTable///////////////////
+
+var button = getElementById('button');
+var tableParent = getElementById('Store Locations');
+
+button.addEventListener('click', addTable);
+
+function addTable() {
+  // Create <table> and <tr>
+  var newTable = document.createElement('table');
+  var newTR = document.createElement('tr');
+
+  // Make <tr> a child of <table>
+  newTable.appendChild(newTR);
+//var firstName = document.querySelector('input[name]')[0];
+  var firstName = getElementById('firstName').value;
+  var lastName = getElementById('lastName').value;
+  console.log('1st name value = ', firstName);
+  console.log('2nd name value = ', lastName);
+  var names = [firstName,
+               lastName,
+               Math.floor(10 * Math.random()) + 1];
+
+  for (var ii = 0; ii < names.length; ii++) {
+    var newTD = document.createElement('td'); // New <td>
+    newTD.textContent = names[ii]; // Fill in <td>'s with text
+    newTR.appendChild(newTD);
+  }
+
+  tableParent.appendChild(newTable); // Append <table> to DOM tree
+}

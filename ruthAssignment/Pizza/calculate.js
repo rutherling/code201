@@ -46,9 +46,11 @@ function getValues(minPizza, maxPizza, minDelivery, maxDelivery){ //compare maxD
    };
   return hourStats;
 }
+var x = new Pizzeria("lalala");
+Pizzeria.prototype.storeValues =
 
-function Pizzeria(pizzeria, pizzaTotal, deliveryTotal, driverTotal){
-function storeValues(){
+function Pizzeria(pizzeria){
+this.storeValues = function(){ //Method of pizzeria.
   //create empty array to store all the neighborhoods.
   var finalArray = [];
 
@@ -138,8 +140,8 @@ function storeValues(){
   }//end outer for loop
   console.table(finalArray);
   return finalArray;
-}; //end storeValues
-//} //end object constructor function
+} //end storeValues
+}; //end object constructor function
 
 //Function to assess weekly sales and operations.
 //Function to prouduce a sum of six days' operation for all neighborhood locations.

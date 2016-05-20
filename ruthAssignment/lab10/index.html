@@ -4,34 +4,45 @@
   <meta charset="utf-8">
   <title>_0_PREVIEW.jpg</title>
   <link href="stylesheet.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Yellowtail' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Yellowtail|Abel' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Patrick+Hand' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+
  </head>
 
 <body>
 <div> <!--parent div -->
-  <div><img src="/images/logo.png"><h2>Delicious<h2> <p>THE BEST FOOD BLOG ON THE WEB.</p> </div> <!--flexbox-->
-  <div> <!--social media-->
-    <img src="/images/fb-icon.png">
-    <img src="/images/twit-icon.png">
-    <img src="/images/gp-icon.png">
-    <img src="/images/insta-icon.png">
-    <img src="/images/flic-icon.png">
-    <img src="/images/pint-icon.png"><!--space-->
+  <div class="container">
+    <div class="item">
+      <img class = "logo" src="/images/logo.png">
+      <h2>Delicious</h2>
+      <p class="motto">THE BEST FOOD BLOG ON THE WEB.</p>
+    </div> <!--flexbox-->
 
-    <img src="/images/rss-icon.png">
-    <img src="/images/mail-icon.png">
+    <div class="item"> <!--social media-->
+      <img src="/images/fb-icon.png">
+      <img src="/images/twit-icon.png">
+      <img src="/images/gp-icon.png">
+      <img src="/images/insta-icon.png">
+      <img src="/images/flic-icon.png">
+      <img src="/images/pint-icon.png"><!--space-->
+
+      <img src="/images/rss-icon.png">
+      <img src="/images/mail-icon.png">
+    </div>
   </div>
+
   <hr>
   <div id="chapter">
     <h1>Chocolate Pizza</h1>
-    <h3>POSTED ON 15 DEC 2013 / DESSERTS</h3>
-    <div class="printer">
-      <img src="/images/print-icon.png">
-      <h3>PRINT</h3>
+    <div>
+      <p class="motto">POSTED ON 15 DEC 2013 / DESSERTS<span class="printer"><img src="/images/print-icon.png"> PRINT</span></p>
     </div>
   </div>
   <img src="/images/choco-pizza.png"></img> <!--chocolate rain -->
   <div id="text"></div>
-    <p>Fro the fig-swirl: Melt butter over medium heat in a saucepan. Add brown sugar and sstir to dissolve. Halve all of the figs and toss in the saucepan with water and lemon juice. Cook over medium heat, stirring frequently, until you have a chunky-jammy mixture. Add salt with one or two stirs, set aside and let cool completely.</p>
+    <p>For the fig-swirl: Melt butter over medium heat in a saucepan. Add brown sugar and sstir to dissolve. Halve all of the figs and toss in the saucepan with water and lemon juice. Cook over medium heat, stirring frequently, until you have a chunky-jammy mixture. Add salt with one or two stirs, set aside and let cool completely.</p>
     <p>Ice cream: In a small pot over medium heat, combine milk, and granulated sugar until sugar is completely dissolved and the milk is just barely lukewarm. Whisk in the egg yolks. Set mixture in the fridge and wait until the fig mixture is cooled.</p>
     <p>Using an ice cream machine, pour liquids into the frozen basin and process according to manufacturer instructions, i.e., let spin and thicken for 20 minutes before adding mascarpone, fig jam mixture, and the nuts. Continue to process for +/- 10 minutes. Pour semi-frozen mixture into a pyrex dish or glass tupperware. Freeze for at least two hours before serving.</p>
   <div id="recipe">
@@ -62,7 +73,7 @@
       </label>
     </div>
 
-    <div>
+    <div id="recipe">
       <label id="ingredients">
         <input type="checkbox" value="unchecked">
         1 1/2 cups heavy cream
@@ -99,7 +110,7 @@
     <button>SHARE RECIPE</button>
   </div>
   <footer>
-    <hr>
+    <hr id="simple">
     <img src="images/small-logo.png"> </img> <!--fork picture spritey-->
      <p> Delicious &copy; 2013 &middot; All Rights Reserved <br> Proudly published with Ghost.</p>
      </footer>

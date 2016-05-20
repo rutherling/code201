@@ -1,6 +1,54 @@
 #recipe {
   background-image: url("images/list-bg.png");
+  flex-direction: row;
 }
 label{
   display:block;
+  font-family: 'Patrick Hand', cursive;
+}
+.container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.item{
+
+  width: 500px;
+}
+#logo{
+  float:left;
+}
+hr{
+  height: 6px;
+  background: url(http://ibrahimjabbari.com/english/images/hr-11.png) repeat-x 0 0;
+  border: 0;
+}
+h1{
+  font-family: 'Oswald', sans-serif;
+  font-size: bold;
+  margin-top: 34px;
+  margin-bottom: 0px;
+}
+h2{
+  font-family: 'Yellowtail', cursive;
+  font-size: 27px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.motto{
+  font-family: 'Abel', sans-serif;
+  margin-top: 0;
+  margin-bottom: 0;
+  /*font-size: 7px;*/
+}
+p{
+  font-family: Georgia;
+}
+.printer{
+  float: right;
+}
+#simple{
+  height: .5px;
+  background: lightgray;
+
 }

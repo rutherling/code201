@@ -1,14 +1,49 @@
 //Array of demand behavior
 //[time slot, min production, max production, min deliveries, max deliveries]
 //I might not need this if I put hte max and min in the For loop.
-var demand = [
+var demandArray = [
   //Hillsboro
-  ['8am to 11am', 0, 4, 0, 4],
-  ['11am to 2pm', 0, 7, 0, 4],
-  ['2pm to 5pm', 2, 15, 1, 4],
-  ['5pm to 8pm', 15, 35, 3, 8],
-  ['8pm to 11pm', 12, 31, 5, 12],
-  ['11pm to 2am', 5, 20, 5, 11]
+  [[0, 4, 0, 4], //8am
+  [0, 7, 0, 4],  //11am
+  [2, 15, 1, 4], //2pm
+  [15, 35, 3, 8], //5pm
+  [12, 31, 5, 12], //8pm
+  [5, 20, 5, 11]], //11pm
+  //Pearl
+  [[0, 4, 0, 4], //8am
+  [0, 7, 0, 4],  //11am
+  [2, 15, 1, 4], //2pm
+  [15, 35, 3, 8], //5pm
+  [12, 31, 5, 12], //8pm
+  [5, 20, 5, 11]], //11pm
+  //DowntownPDX
+  [[0, 4, 0, 4], //8am
+  [0, 7, 0, 4],  //11am
+  [2, 15, 1, 4], //2pm
+  [15, 35, 3, 8], //5pm
+  [12, 31, 5, 12], //8pm
+  [5, 20, 5, 11]], //11pm
+  //Buckman
+  [[0, 4, 0, 4], //8am
+  [0, 7, 0, 4],  //11am
+  [2, 15, 1, 4], //2pm
+  [15, 35, 3, 8], //5pm
+  [12, 31, 5, 12], //8pm
+  [5, 20, 5, 11]], //11pm
+  //PDXairport
+  [[0, 4, 0, 4], //8am
+  [0, 7, 0, 4],  //11am
+  [2, 15, 1, 4], //2pm
+  [15, 35, 3, 8], //5pm
+  [12, 31, 5, 12], //8pm
+  [5, 20, 5, 11]], //11pm
+  //Clackamas
+  [[0, 4, 0, 4], //8am
+  [0, 7, 0, 4],  //11am
+  [2, 15, 1, 4], //2pm
+  [15, 35, 3, 8], //5pm
+  [12, 31, 5, 12], //8pm
+  [5, 20, 5, 11]] //11pm
 ];
 
 var hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1];//pizzerias close at 2am.
@@ -47,67 +82,65 @@ function getValues(minPizza, maxPizza, minDelivery, maxDelivery){ //compare maxD
   return hourStats;
 }
 var x = new Pizzeria("lalala");
-Pizzeria.prototype.storeValues =
+//Pizzeria.prototype.storeValues = //does this define a function? or do i set a variable equal to the result?
+//^I don't think I need this yet.
 
-function Pizzeria(pizzeria){
-this.storeValues = function(){ //Method of pizzeria.
+function Pizzeria(pizzeria, demandArray){
+  this.storeValues = function(){ //Method of pizzeria.
   //create empty array to store all the neighborhoods.
-  var finalArray = [];
+    var finalArray = [];
 
-  //outer loop iterates through neighborhoods
-  for(i = 0; i < neighborhood.length; i++){
-    //create an object for each neighborhood pizzeria
-    var pizzeria = {
-      neighborhood: neighborhood[i],
+    //outer loop iterates through neighborhoods
+    for(i = 0; i < demandArray.length; i++){
+      //add property to object for neighborhood pizzeria
+      this.pizzeria = pizzeria; //property
 
-    };//end define pizzeria object
-
-    //create array to store the hourly production and driver needs within the neighborhood object
-    var singleStats = [];
-    //Daily totals: as you go through the loop, add the hourly pizza, deliveries, and drivers for each location.
-    var pizzaTotal = 0;
-    var deliveryTotal = 0;
-    var driverTotal = 0;
+      //create array to store the hourly production and driver needs within the neighborhood object
+      var singleStats = [];
+      //Daily totals: as you go through the loop, add the hourly pizza, deliveries, and drivers for each location.
+      var pizzaTotal = 0;
+      var deliveryTotal = 0;
+      var driverTotal = 0;
     //inner loop generates the countPizza, countDelivery, and countDriver by iterating through 18 hours of operation.
     for(j = 0; j < hours.length; j++){
-        //Look through six scenarios
+        //Look through six scenarios for the varying shifts
 
         //8am to 10am
-      if(j < 3){
-        minPizza = demand[0][1];
-        maxPizza = demand[0][2];
-        minDelivery = demand[0][3];
-        maxDelivery = demand[0][4];
+      if(j < 3){ //TODO you need a third index because each neighborhood is in its own array. Check the index for positions.
+        minPizza = demandArray[i][0][1];
+        maxPizza = demandArray[i][0][2];
+        minDelivery = demand[i][0][3];
+        maxDelivery = demand[i][0][4];
         //11am to 1pm
       } else if (j < 6){
-        minPizza = demand[1][1];
-        maxPizza = demand[1][2];
-        minDelivery = demand[1][3];
-        maxDelivery = demand[1][4];
+        minPizza = demand[i][1][1];
+        maxPizza = demand[i][1][2];
+        minDelivery = demand[i][1][3];
+        maxDelivery = demand[i][1][4];
       //2pm to 4pm
       } else if (j < 9){
-        minPizza = demand[2][1];
-        maxPizza = demand[2][2];
-        minDelivery = demand[2][3];
-        maxDelivery = demand[2][4];
+        minPizza = demand[i][2][1];
+        maxPizza = demand[i][2][2];
+        minDelivery = demand[i][2][3];
+        maxDelivery = demand[i][2][4];
           //5pm to 7pm
       } else if (j < 12){
-        minPizza = demand[3][1];
-        maxPizza = demand[3][2];
-        minDelivery = demand[3][3];
-        maxDelivery = demand[3][4];
+        minPizza = demand[i][3][1];
+        maxPizza = demand[i][3][2];
+        minDelivery = demand[i][3][3];
+        maxDelivery = demand[i][3][4];
         //8pm to 10pm
       } else if (j < 15){
-        minPizza = demand[4][1];
-        maxPizza = demand[4][2];
-        minDelivery = demand[4][3];
-        maxDelivery = demand[4][4];
+        minPizza = demand[i][4][1];
+        maxPizza = demand[i][4][2];
+        minDelivery = demand[i][4][3];
+        maxDelivery = demand[i][4][4];
         //11pm to 2am
       } else {
-        minPizza = demand[5][1];
-        maxPizza = demand[5][2];
-        minDelivery = demand[5][3];
-        maxDelivery = demand[5][4];
+        minPizza = demand[i][5][1];
+        maxPizza = demand[i][5][2];
+        minDelivery = demand[i][5][3];
+        maxDelivery = demand[i][5][4];
       }//end else
       //create a dummy object to equal the output of getValues.
       var dummy = getValues(minPizza, maxPizza, minDelivery, maxDelivery);

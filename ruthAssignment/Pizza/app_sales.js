@@ -5,7 +5,7 @@ var operations = document.getElementById('operations');
 // Create <table> and <tr> for each neighborhood, then <tr> for each hour
 var parentTable = document.createElement('table');
 
-var locationHour = storeValues();//location by hour from calculate.js
+var locationHour = Pizzera.storeValues();//location by hour from calculate.js
 console.log(locationHour);
 //var locationHour = ['sample',1,5,9];
 

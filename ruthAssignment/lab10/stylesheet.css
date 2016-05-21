@@ -1,6 +1,12 @@
+#parent{
+  width: 67%;
+  margin:auto;
+}
 #recipe {
   background-image: url("images/list-bg.png");
-  flex-direction: row;
+  background-size: cover;;
+  height: 200px;
+  background-repeat: no-repeat;
 }
 label{
   display:block;
@@ -11,17 +17,15 @@ label{
   flex-direction: row;
   justify-content: space-between;
 }
-.item{
 
-  width: 500px;
-}
 #logo{
   float:left;
 }
-hr{
+hr.slanty_lines{
   height: 6px;
   background: url(http://ibrahimjabbari.com/english/images/hr-11.png) repeat-x 0 0;
   border: 0;
+  clear:both;
 }
 h1{
   font-family: 'Oswald', sans-serif;
@@ -31,9 +35,15 @@ h1{
 }
 h2{
   font-family: 'Yellowtail', cursive;
-  font-size: 27px;
+  font-size: 32px;
   margin-top: 0;
   margin-bottom: 0;
+  display: inline;
+}
+h4{
+  font-size: 20px;
+  margin-top: 12px;
+  margin-bottom: 4px;
 }
 .motto{
   font-family: 'Abel', sans-serif;
@@ -41,8 +51,12 @@ h2{
   margin-bottom: 0;
   /*font-size: 7px;*/
 }
+
 p{
   font-family: Georgia;
+}
+#text{
+  text-indent: 20px;
 }
 .printer{
   float: right;
@@ -50,5 +64,47 @@ p{
 #simple{
   height: .5px;
   background: lightgray;
+}
+#column1, #column2{
+  width: 40%;
+  float: left;
+  padding-top: 20px;
+  padding-left: 5px;
+  margin: auto;
+}
 
+#byline > div{
+  display: inline-block;
+}
+button{
+  background-color: #BC7058;
+  border: none;
+  padding: 20px;
+  font-size: 18px;
+  color: white;
+  float: right;
+  margin-left: 122px;
+  /*margin-top: 30px;*/
+}
+#middle{
+  width: 60%;
+  margin-left: 10px;
+}
+footer{
+  text-align: center;
+  color: gray;
+  font-size: 12px;
+}
+#smallIcon{
+  position: relative;
+  top: -25px;
+}
+#delicious{
+  display: inline-block;
+}
+.top{
+  font-size: 10px;
+}
+.center{
+  padding-top: 15px;
 }

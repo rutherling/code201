@@ -1,0 +1,87 @@
+/*Lab 9, code201, stylesheet for pizza website*/
+
+h1{
+  font-family: 'Poiret One', cursive;
+}
+
+.woody-brown {
+  background-color: rgba(63, 40, 29, 1);
+}
+
+.petite-orchid {
+  background-color: rgba(211, 143, 112, 1);
+}
+
+.au-chico {
+  background-color: rgba(138, 82, 63, 1);
+}
+
+.sirocco {
+  background-color: rgba(118, 134, 151, 1);
+}
+
+.cascade {
+  background-color: rgba(143, 173, 133, 1);
+}
+body{
+  background-color: rgba(211, 143, 112, 1);
+}
+
+h1{
+  font-family: 'Poiret One', cursive;
+  display: block;
+  border: dotted rgba(138, 82, 63, 1); 4pt;
+  border-radius: 10pt;
+  text-align: center;
+}
+
+h2{
+  font-family:sans-serif;
+}
+
+ul {
+  display: inline;
+}
+
+table {
+  background-color: rgba(143, 173, 133, 1);
+  color: rgba(63, 40, 29, 1);
+}
+
+td {
+  border: rgba(118, 134, 151, 1) 1pt solid;
+  font-family:sans-serif;
+}
+th{
+  font-family:sans-serif;
+  padding:4px;
+}
+
+img {
+  opacity: 0.4;
+  width:1000px;
+  float: right;
+  position:absolute;
+}
+
+fieldset {
+  padding: 30px;
+  margin: auto;
+  width: 50%;
+  position: relative;
+>>>>>>> 6489051ba83eedf35b58e9ca91b6a961d9cf2ca1
+}
+li {
+  font-family: sans-serif;
+  font-weight: bolder;
+  text-shadow: 1px 1px black;
+}
+div{
+  width: 1000px;
+}
+#storeHours{
+  position:
+}
+#sales{
+  float: right;
+}

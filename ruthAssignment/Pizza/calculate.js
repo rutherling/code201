@@ -55,7 +55,6 @@ var neighborhood = ['Hillsboro', 'Pearl', 'DowntownPDX', 'Buckman', 'PDXairport'
 //Random generation of pizza's count, given min and max for that hour
 function getValues(minPizza, maxPizza, minDelivery, maxDelivery){ //compare maxDelivery to calcPizza for ceiling
   var calcPizza = Math.floor(Math.random() * (maxPizza - minPizza + 1)) + minPizza;
-  console.log('Randomly generated pizzas this hour: ' + calcPizza);
 
 //Use pizza's calc as delivery's max for that specific hour. Delivery min is in the array.
   var calculateDelivery = function(){//start calculate Delivery function
@@ -68,112 +67,105 @@ function getValues(minPizza, maxPizza, minDelivery, maxDelivery){ //compare maxD
     return calcDelivery;
   };//end anonymous function
   var calcDelivery = calculateDelivery();
-  console.log('Randomly generated deliveries this hour: ' + calcDelivery);
 //Use deliveries to determine the count of drivers. 1 driver has capacity of 3 deliveries.
   var calcDriver = Math.ceil(calcDelivery / 3);
-  console.log('Count of drivers needed to make these deliveries: ' + calcDriver);
 //Return an object with the count of pizzas, count of deliveries, and count of drivers.
 //Later the next function will push countPizza, countDelivery, and countDriver to an array.
-   var hourStats = {
+  var hourStats = {
     countPizza: calcPizza,
     countDelivery: calcDelivery,
     countDriver: calcDriver
-   };
+  };
   return hourStats;
 }
-var x = new Pizzeria("lalala");
-//Pizzeria.prototype.storeValues = //does this define a function? or do i set a variable equal to the result?
-//^I don't think I need this yet.
 
-function Pizzeria(pizzeria, demandArray){
-  this.storeValues = function(){ //Method of pizzeria.
-  //create empty array to store all the neighborhoods.
-    var finalArray = [];
+var pizzeriaArray = []; //TODO make sure the finalArray's dimensions make sense for functions that call newPizzeria.
+//FUTURE FOR LAB 8: each time a new pizzeria is created, finalArray gets wiped out and re-creates each pizzeria, old and new.
+//this is a LOCAL variable, so make sure to invoke the function and assign it to a variable OUTSIDE of the object constructor.
 
-    //outer loop iterates through neighborhoods
-    for(i = 0; i < demandArray.length; i++){
-      //add property to object for neighborhood pizzeria
-      this.pizzeria = pizzeria; //property
+function initializeTotal(){
+  //create array to store the hourly production and driver needs within the neighborhood object
 
-      //create array to store the hourly production and driver needs within the neighborhood object
-      var singleStats = [];
-      //Daily totals: as you go through the loop, add the hourly pizza, deliveries, and drivers for each location.
-      var pizzaTotal = 0;
-      var deliveryTotal = 0;
-      var driverTotal = 0;
+  //Daily totals: as you go through the loop, add the hourly pizza, deliveries, and drivers for each location.
+  //initialize to 0.
+  var pizzaTotal = 0;
+  var deliveryTotal = 0;
+  var driverTotal = 0;
+};
+
+//do some for loops that create all the pizzerias.
+
+function Pizzeria(neighborhood, demandIndivArray){ //user input MUST be in demandArray before you call Pizzeria object consturctor.
+  this.pizzeria = neighborhood;
+
+  this.Values = function(){//converts demandIndivArray to hourlyValues.
+    var hourlyArray = []; //turns into this.Values.
+    initializeTotal();
+
     //inner loop generates the countPizza, countDelivery, and countDriver by iterating through 18 hours of operation.
-    for(j = 0; j < hours.length; j++){
+    for(j = 0; j < hours.length; j++){ //figures out the minPizza, maxPizza, minDelivery, maxDelivery.
         //Look through six scenarios for the varying shifts
 
         //8am to 10am
       if(j < 3){ //TODO you need a third index because each neighborhood is in its own array. Check the index for positions.
-        minPizza = demandArray[i][0][1];
-        maxPizza = demandArray[i][0][2];
-        minDelivery = demand[i][0][3];
-        maxDelivery = demand[i][0][4];
+        minPizza = demandIndivArray[0][0];
+        maxPizza = demandIndivArray[0][1];
+        minDelivery = demandIndivArray[0][2];
+        maxDelivery = demandIndivArray[0][3];
         //11am to 1pm
       } else if (j < 6){
-        minPizza = demand[i][1][1];
-        maxPizza = demand[i][1][2];
-        minDelivery = demand[i][1][3];
-        maxDelivery = demand[i][1][4];
+        minPizza = demandIndivArray[1][0];
+        maxPizza = demandIndivArray[1][1];
+        minDelivery = demandIndivArray[1][2];
+        maxDelivery = demandIndivArray[1][3];
       //2pm to 4pm
       } else if (j < 9){
-        minPizza = demand[i][2][1];
-        maxPizza = demand[i][2][2];
-        minDelivery = demand[i][2][3];
-        maxDelivery = demand[i][2][4];
+        minPizza = demandIndivArray[2][0];
+        maxPizza = demandIndivArray[2][1];
+        minDelivery = demandIndivArray[2][2];
+        maxDelivery = demandIndivArray[2][3];
           //5pm to 7pm
       } else if (j < 12){
-        minPizza = demand[i][3][1];
-        maxPizza = demand[i][3][2];
-        minDelivery = demand[i][3][3];
-        maxDelivery = demand[i][3][4];
+        minPizza = demandIndivArray[3][0];
+        maxPizza = demandIndivArray[3][1];
+        minDelivery = demandIndivArray[3][2];
+        maxDelivery = demandIndivArray[3][3];
         //8pm to 10pm
       } else if (j < 15){
-        minPizza = demand[i][4][1];
-        maxPizza = demand[i][4][2];
-        minDelivery = demand[i][4][3];
-        maxDelivery = demand[i][4][4];
+        minPizza = demandIndivArray[4][0];
+        maxPizza = demandIndivArray[4][1];
+        minDelivery = demandIndivArray[4][2];
+        maxDelivery = demandIndivArray[4][3];
         //11pm to 2am
       } else {
-        minPizza = demand[i][5][1];
-        maxPizza = demand[i][5][2];
-        minDelivery = demand[i][5][3];
-        maxDelivery = demand[i][5][4];
+        minPizza = demandIndivArray[5][0];
+        maxPizza = demandIndivArray[5][1];
+        minDelivery = demandIndivArray[5][2];
+        maxDelivery = demandIndivArray[5][3];
       }//end else
-      //create a dummy object to equal the output of getValues.
-      var dummy = getValues(minPizza, maxPizza, minDelivery, maxDelivery);
+        //
+      var singleHour = getValues(minPizza, maxPizza, minDelivery, maxDelivery); //returns an object of countPizza, countDelivery, and countDriver
 
-      //each neighborhood will have an array of 18 sets (pizza, delivery, driver)
-      //push to the array that stores the object for each hours value
-      singleStats.push(dummy);
-      //var pizzeriaValues = getValues(minPizza, maxPizza, minDelivery); //add property to pizzeria object.
-        //the above line also runs getValues and returns an object
+        //push to the array that stores the object for each hour's value
+      hourlyArray.push(singleHour);
+    }//end for loop j (18 hours)
+    return hourlyArray;
+  }; //end this.Values()
 
-        //use dummy.key to add a value to pizzaTotal, deliveryTotal, and driverTotal.
-      pizzaTotal += dummy.countPizza;
-      deliveryTotal += dummy.countDelivery;
-      driverTotal += dummy.countDriver;
-      //hourStats[i].Values;////////////I don't think i need this?
-        //update the value for the hourValues key (hourStats)
+  this.dailyTotals = function(){ //create another method for total pizzas, deliveries, and drivers.
+    var pizzaTotal = 0;
+    var deliveryTotal = 0;
+    var driverTotal = 0;
+    var totals = [];
 
-    }//end inner for loop
-    //add properties to the object.
-    //push all 18 values to the array
-    pizzeria.Values = singleStats;
-    //create another property for total pizzas
-    pizzeria.totalPizza = pizzaTotal;
-    //create another property for total deliveries
-    pizzeria.totalDelivery = deliveryTotal;
-    //create another property for total drivers
-    pizzeria.totalDriver = driverTotal;
-    //push the neighborhood object to an array
-    finalArray.push(pizzeria);
-  }//end outer for loop
-  console.table(finalArray);
-  return finalArray;
-} //end storeValues
+    for (var k = 0; k < hours.length; k++) {
+      pizzaTotal += this.Values[k].countPizza;
+      deliveryTotal += this.Values[k].countDelivery;
+      driverTotal += this.Values[k].countDriver;
+    }
+    totals.push(pizzaTotal, deliveryTotal, driverTotal);
+    return totals;
+  }; //end this.dailyTotals;
 }; //end object constructor function
 
 //Function to assess weekly sales and operations.
@@ -185,12 +177,12 @@ function weeklyBusiness(){
   var weeklyDriver = [];
 
   var weeklyOperations = [];
-
-  for (var ii = 0; ii < 6; ii++) {
+//finalArray.length == neighborhood.length. loop through each neighborhood.
+  for (var ii = 0; ii < 6; ii++) { //6 for 6 days of operation.
 
 //Function to push countPizza, countDelivery, and countDriver every hour, for each neighborhood
 //run storeValues
-  var finalArray = storeValues();
+  var finalArray = Pizzeria.Values(); //finalArray is the output of Pizzeria.storeValues.
 
     weeklyPizza.push(finalArray[ii].totalPizza);
     weeklyDelivery.push(finalArray[ii].totalDelivery);

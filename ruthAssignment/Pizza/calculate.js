@@ -79,10 +79,6 @@ function getValues(minPizza, maxPizza, minDelivery, maxDelivery){ //compare maxD
   return hourStats;
 }
 
-var pizzeriaArray = []; //TODO make sure the finalArray's dimensions make sense for functions that call newPizzeria.
-//FUTURE FOR LAB 8: each time a new pizzeria is created, finalArray gets wiped out and re-creates each pizzeria, old and new.
-//this is a LOCAL variable, so make sure to invoke the function and assign it to a variable OUTSIDE of the object constructor.
-
 function initializeTotal(){
   //create array to store the hourly production and driver needs within the neighborhood object
 
@@ -98,7 +94,7 @@ function initializeTotal(){
 function Pizzeria(neighborhood, demandIndivArray){ //user input MUST be in demandArray before you call Pizzeria object consturctor.
   this.pizzeria = neighborhood;
 
-  this.Values = function(){//converts demandIndivArray to hourlyValues.
+  this.getHourly = function(){//converts demandIndivArray to hourlyValues.
     var hourlyArray = []; //turns into this.Values.
     initializeTotal();
 
@@ -150,9 +146,10 @@ function Pizzeria(neighborhood, demandIndivArray){ //user input MUST be in deman
       hourlyArray.push(singleHour);
     }//end for loop j (18 hours)
     return hourlyArray;
-  }; //end this.Values()
+  }; //end this.getHourly()
+  this.Values = this.getHourly(); //runs the function and assigns the output to a variable.
 
-  this.dailyTotals = function(){ //create another method for total pizzas, deliveries, and drivers.
+  this.getTotals = function(){ //create another method for total pizzas, deliveries, and drivers.
     var pizzaTotal = 0;
     var deliveryTotal = 0;
     var driverTotal = 0;
@@ -165,52 +162,24 @@ function Pizzeria(neighborhood, demandIndivArray){ //user input MUST be in deman
     }
     totals.push(pizzaTotal, deliveryTotal, driverTotal);
     return totals;
-  }; //end this.dailyTotals;
+  }; //end this.getTotals;
+  this.Totals = this.getTotals(); //runs the function and returns an array of one day's total pizzas, deliveries, and drivers.
 }; //end object constructor function
 
-//Function to assess weekly sales and operations.
-//Function to prouduce a sum of six days' operation for all neighborhood locations.
-function weeklyBusiness(){
-  //Create empty arrays for each total you need. Put all the arrays into a parent array.
-  var weeklyPizza = [];
-  var weeklyDelivery = [];
-  var weeklyDriver = [];
+var getPizzerias = function (){ //creates Pizzeria objects for each current location. returns an array.
+  var pizzeriaArray = [];
+  for (var i = 0; i < neighborhood.length; i++) { //cycle through all the known neighborhoods
+    for (var z = 0; z < demandArray.length; z++) { //cycle through 18 hours of a day
+      var neighborhood = new Pizzeria(neighborhood[i], demandArray[z]); //create the object
+    }//end For loop
+    pizzeriaArray.push(neighborhood); //store the object in an array
+  }
+  return pizzeriaArray;
+};
 
-  var weeklyOperations = [];
-//finalArray.length == neighborhood.length. loop through each neighborhood.
-  for (var ii = 0; ii < 6; ii++) { //6 for 6 days of operation.
+var finalArray = getPizzerias();//run the function
+console.log(finalArray);
 
-//Function to push countPizza, countDelivery, and countDriver every hour, for each neighborhood
-//run storeValues
-  var finalArray = Pizzeria.Values(); //finalArray is the output of Pizzeria.storeValues.
-
-    weeklyPizza.push(finalArray[ii].totalPizza);
-    weeklyDelivery.push(finalArray[ii].totalDelivery);
-    weeklyDriver.push(finalArray[ii].totalDriver);
-}//end for loop weeklyBusiness
-    weeklyOperations.push(weeklyPizza, weeklyDelivery, weeklyDriver);
-    console.log(weeklyOperations);
-    return weeklyOperations;
-
-}; //end weeklyBusiness
-var a = weeklyBusiness(); //run the function ;D
-console.log(a);
-//Yet another function to loop through and add the six days together.
-//Returns totalPizza, totalDelivery, and totalDriver for all locations.
-function sumOperations(a){ //accepts a two-dimensional array.
-
-  var operationSum = [];
-  //loop through the three elements in weeklyOperations
-  for (var ii = 0; ii < a.length; ii++) { //ii represents pizza, delivery, and driver
-    var partialSum = 0;
-    for (var k = 0; k < 6; k++) { //k represents one day of the operating week.
-      partialSum += a[ii][k];
-    }//end inner for
-    operationSum.push(partialSum);
-
-  }//end outer for
-  return operationSum;
-}//end sumOperations
-
-var b = sumOperations(a);
-console.log(b);
+ //TODO make sure the finalArray's dimensions make sense for functions that call newPizzeria.
+//FUTURE FOR LAB 8: each time a new pizzeria is created, finalArray gets wiped out and re-creates each pizzeria, old and new.
+//this is a LOCAL variable, so make sure to invoke the function and assign it to a variable OUTSIDE of the object constructor.

@@ -1,14 +1,23 @@
 #leftImage{
-
+  background-image: url("img/beardBeanie.jpg");
+  width = 400px;
+  height= 400px;
+  background-size: cover;
+  background-position: center;
 }
 
 #rightImage{
-
+  background-image: url("img/boyfriendPillow.jpg");
+  width = 400px;
+  height= 400px;
+  background-size: cover;
+  background-position: center;
 }
 
 #parent{
   background-color: green;
   width: 960px;
+  height: 1800px;
   margin: auto;
 }
 .container{ /*This holds the two images*/
@@ -28,4 +37,7 @@
 h1{
   text-align: center;
   color: white;
+}
+button{
+  visibility:hidden;
 }

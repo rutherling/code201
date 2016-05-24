@@ -87,31 +87,14 @@ function refreshImage(e) {
   switch(e){
   case 'leftImage':
     images[leftImage.imageIdx[0]].incrementClicks();
-    var newTD = document.createElement('td');
-    newTD.textContent = ':)';
-    var tableRow = gebi(images[leftImage.imageIdx[0]].ident);
-    console.log('tableRow: ' + tableRow.id);
-    tableRow.appendChild(newTD);
-    //fails testing, append of null.
-    //repeat for center and right images
     break;
 
   case 'centerImage':
     images[rightImage.imageIdx[1]].incrementClicks();
-    var newTD = document.createElement('td');
-    newTD.textContent = ':)';
-    var tableRow = gebi(images[leftImage.imageIdx[1]].ident);
-    console.log('tableRow: ' + tableRow.id);
-    tableRow.appendChild(newTD);
     break;
 
   case 'rightImage':
     images[centerImage.imageIdx[2]].incrementClicks();
-    var newTD = document.createElement('td');
-    newTD.textContent = ':)';
-    var tableRow = gebi(images[leftImage.imageIdx[2]].ident);
-    console.log('tableRow: ' + tableRow.id);
-    tableRow.appendChild(newTD);
     break;
   }
 
@@ -144,7 +127,28 @@ function refreshImage(e) {
 } //end refreshImage
 
 //Event Listener for when user clicks "Show Results" button
-var plot = gebi('plot');
+var plot = gebi('visual');
 outcome.addEventListener('click', function(){
   plot.style['visibility'] = 'visible';
+});
+//put up any visual
+var canvas = document.getElementById("myChart");
+var myChart = new Chart(canvas, {
+  type: 'bar',
+  data: {
+      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"], //change to array of image.ident values.
+    datasets: [{
+      label: '# of Votes',
+      data: [12, 19, 3, 5, 2, 3] //change this to image.Nclicks values
+    }]
+  },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
 });

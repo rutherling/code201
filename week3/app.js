@@ -116,15 +116,20 @@ function refreshImage(e) {
   }
 
   var s = 'click counts: ';
+  //For loop OR MAP METHOD to aggregate NClicks for each image object.
   images.map(function(ele) { s += ele.Nclicks + ', '; });
   //console.log(s);
 
   showNewImage(getRandomInt());
-  //For loop OR MAP METHOD to aggregate NClicks for each image object.
+
   var cc = 0;
   //map over the array.
-  images.map(function(sum){cc += sum.Nclicks;}); //I think this will look through all the image objects in images[] and add .NClicks together.
+  images.map(function(sum){
+    cc += sum.Nclicks;
+    return cc;
+  }); //I think this will look through all the image objects in images[] and add .NClicks together.
   console.log('sum images.Nclicks: ' + cc);
+
   //Compare NClicks to 16.
   if (16 === cc) {
     //make the buttons visible
@@ -134,7 +139,7 @@ function refreshImage(e) {
     voteAgain.style['visibility'] = 'visible';
 
     var container = gebi('imagesContainer'); //I need a way to leave the function so refreshImage stops running?
-    container.style['visiblity'] = 'hidden'; //doesn't work yet.
+    container.style['display'] = 'none'; //doesn't work yet.
   }//end if for Nclicks comparison to 16.
 } //end refreshImage
 

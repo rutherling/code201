@@ -88,6 +88,7 @@ function refreshImage(e) {
   case 'leftImage':
     images[leftImage.imageIdx[0]].incrementClicks();
     var newTD = document.createElement('td');
+    newTD.textContent = ':)';
     var tableRow = gebi(images[leftImage.imageIdx[0]].ident);
     console.log('tableRow: ' + tableRow.id);
     tableRow.appendChild(newTD);
@@ -97,10 +98,20 @@ function refreshImage(e) {
 
   case 'centerImage':
     images[rightImage.imageIdx[1]].incrementClicks();
+    var newTD = document.createElement('td');
+    newTD.textContent = ':)';
+    var tableRow = gebi(images[leftImage.imageIdx[1]].ident);
+    console.log('tableRow: ' + tableRow.id);
+    tableRow.appendChild(newTD);
     break;
 
   case 'rightImage':
     images[centerImage.imageIdx[2]].incrementClicks();
+    var newTD = document.createElement('td');
+    newTD.textContent = ':)';
+    var tableRow = gebi(images[leftImage.imageIdx[2]].ident);
+    console.log('tableRow: ' + tableRow.id);
+    tableRow.appendChild(newTD);
     break;
   }
 
@@ -115,7 +126,7 @@ function refreshImage(e) {
   images.map(function(sum){cc += sum.Nclicks;}); //I think this will look through all the image objects in images[] and add .NClicks together.
   console.log('sum images.Nclicks: ' + cc);
   //Compare NClicks to 16.
-  if (6 === cc) {
+  if (16 === cc) {
     //make the buttons visible
     var outcome = gebi('outcome');
     outcome.style['visibility'] = 'visible';

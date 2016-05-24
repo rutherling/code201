@@ -50,7 +50,8 @@ button{
   visibility: hidden;
   background-color: gold;
 }
-.points{
+
+td{
   background-color: purple;
   width: 5px;
 }

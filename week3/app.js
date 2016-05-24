@@ -78,11 +78,25 @@ leftImage.addEventListener('click', refreshImage); //event to listen for, functi
 centerImage.addEventListener('click', refreshImage);
 rightImage.addEventListener('click', refreshImage);
 
-function refreshImage() {
+function refreshImage(e) {
   //only increment the one that gets clicked!
-  images[leftImage.imageIdx[0]].incrementClicks();
-  images[rightImage.imageIdx[1]].incrementClicks();
-  images[centerImage.imageIdx[2]].incrementClicks();
+  var e = e.target.id;
+  console.log('event target: ' + e);
+
+  switch(e){
+    case 'leftImage':
+      images[leftImage.imageIdx[0]].incrementClicks();
+      break;
+
+    case 'centerImage':
+      images[rightImage.imageIdx[1]].incrementClicks();
+      break;
+
+    case 'rightImage':
+      images[centerImage.imageIdx[2]].incrementClicks();
+      break;
+  }
+
   var s = 'click counts: ';
   images.map(function(ele) { s += ele.Nclicks + ', '; });
   //console.log(s);

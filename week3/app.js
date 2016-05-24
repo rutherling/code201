@@ -18,22 +18,41 @@ var imgNames = ['beardBeanie',
                 'slippersLED',
                 'travelPillow'];
 
+//This will be an array of objects, each one represents the image itself (not the div container).
 var images = [];
 
-leftImage = gebi('leftImage'); //creates a variable from DOM element, leftImage, so you can set the background-image url().
+//create a variable from DOM element for each image div so you can set the background-image url().
+leftImage = gebi('leftImage');
+rightImage = gebi('rightImage');
+centerImage = gebi('centerImage');
 
+//generate three random integers. ***extra credit if they are unique.
 function getRandomInt() {
-  return Math.floor(imgNames.length * Math.random()); // idx is a random integer
+  var leftRandom = Math.floor(imgNames.length * Math.random());
+  var centerRandom = Math.floor(imgNames.length * Math.random());
+  var rightRandom = Math.floor(imgNames.length * Math.random());
+  return [leftRandom, centerRandom, rightRandom];
 }
 
-function showNewImage(idx) { //accepts an index to retrieve an image from imgNames[].
-  leftImage.style['background-image'] = 'url("' + images[idx].src + '")';
+function showNewImage(idx) { //accepts an array of indices to retrieve a image from imgNames[] for each div.
+  //update the image in each of the three div s.
+  leftImage.style['background-image'] = 'url("' + images[idx[0]].src + '")';
   leftImage.imageIdx = idx; // Store index of visible image
-  images[idx].incrementNshown();
+  centerImage.style['background-image'] = 'url("' + images[idx[1]].src + '")';
+  centerImage.imageIdx = idx;
+  rightImage.style['background-image'] = 'url("' + images[idx[2]].src + '")';
+  rightImage.imageIdx = idx;
+
+  //Increment all of their Nshown.
+  images[idx[0]].incrementNshown();
+  images[idx[1]].incrementNshown();
+  images[idx[2]].incrementNshown();
+
+  //log the count shown for each image. This should increment by 1 for each of the three images shown.
   var s = 'Show counts: ';
   images.map(function(ele) { s += ele.Nshown + ', '; });
   console.log(s);
-} //end .map to show the count of times the image has shown.
+} //end showNewImage([left, center, right]);
 
 function Image(src) { //creates an array of image objects. pass in imgNames[i] as src.
   this.src = 'img/' + src + '.jpg';
@@ -56,9 +75,13 @@ showNewImage(getRandomInt()); //run showNewImage. Index is set from getRandomInt
 console.log('leftImage.imageIdx = ' + leftImage.imageIdx);
 
 leftImage.addEventListener('click', refreshImage); //event to listen for, function to run.
+centerImage.addEventListener('click', refreshImage);
+rightImage.addEventListener('click', refreshImage);
 
 function refreshImage() {
-  images[leftImage.imageIdx].incrementClicks();
+  images[leftImage.imageIdx[0]].incrementClicks();
+  images[rightImage.imageIdx[1]].incrementClicks();
+  images[centerImage.imageIdx[2]].incrementClicks();
   var s = 'click counts: ';
   images.map(function(ele) { s += ele.Nclicks + ', '; });
   console.log(s);

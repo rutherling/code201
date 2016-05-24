@@ -1,6 +1,22 @@
 User (or program) action
 --> expected outcome
+Tuesday
+1. Start by checking that you can connect to the Chart.js library with <script> tags in the index.html.
+--> You should be able to see the sample code from Chartjs.org.
+2. Modify the click threshold (lab description requires 16) and confirm the 16th one prevents more clicks. Either hide the image container element or turn the event listener off.
+--> when you click on it, the Nclicks shouldn't change, and the images shouldn't refresh.
+3. Check user experience flow:
+vote 16x
+  a. vote again, show results, 8 more votes.
+-->  a1. vote again: 16 votes, back to a.
+-->  a2. show results: still options to vote again (a1) or 8 more votes (a3).
+-->  a3. 8 more votes, STOP other options for voting, and automatically show results.
+4. Compare the console.log(NClicks) to the chart.
+-->chart should match the clicks done during testing.
+5. User bias test: In real life, I would apply the psychology principle that says survey respondents tend to favor the right-most option. I would find a way to store the count of times the left/center/right div was clicked.
+-->See if any one position is selected statistically significantly more than the other positions.
 
+Monday
 1. In the live-server rendition of the page, click elsewhere on the page to ensure the Event Listener does NOT respond.
 -->no change to click count or shown count. The images should only change when the user clicks inside the <div> containing the images.
 

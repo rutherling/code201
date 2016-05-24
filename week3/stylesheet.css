@@ -43,5 +43,14 @@ h1{
   color: white;
 }
 button{
-  visibility:visible;
+  visibility: hidden;
+  /*hide all buttons, but you'll change it so voteMore is visible*/
+}
+#plot{
+  visibility: hidden;
+  background-color: gold;
+}
+.points{
+  background-color: purple;
+  width: 5px;
 }

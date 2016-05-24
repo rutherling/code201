@@ -55,6 +55,7 @@ function showNewImage(idx) { //accepts an array of indices to retrieve a image f
 } //end showNewImage([left, center, right]);
 
 function Image(src) { //creates an array of image objects. pass in imgNames[i] as src.
+  this.ident = src;
   this.src = 'img/' + src + '.jpg';
   this.Nclicks = 0;
   this.Nshown = 0;
@@ -84,17 +85,23 @@ function refreshImage(e) {
   console.log('event target: ' + e);
 
   switch(e){
-    case 'leftImage':
-      images[leftImage.imageIdx[0]].incrementClicks();
-      break;
+  case 'leftImage':
+    images[leftImage.imageIdx[0]].incrementClicks();
+    var newTD = document.createElement('td');
+    var tableRow = gebi(images[leftImage.imageIdx[0]].ident);
+    console.log('tableRow: ' + tableRow.id);
+    tableRow.appendChild(newTD);
+    //fails testing, append of null.
+    //repeat for center and right images
+    break;
 
-    case 'centerImage':
-      images[rightImage.imageIdx[1]].incrementClicks();
-      break;
+  case 'centerImage':
+    images[rightImage.imageIdx[1]].incrementClicks();
+    break;
 
-    case 'rightImage':
-      images[centerImage.imageIdx[2]].incrementClicks();
-      break;
+  case 'rightImage':
+    images[centerImage.imageIdx[2]].incrementClicks();
+    break;
   }
 
   var s = 'click counts: ';
@@ -108,5 +115,20 @@ function refreshImage(e) {
   images.map(function(sum){cc += sum.Nclicks;}); //I think this will look through all the image objects in images[] and add .NClicks together.
   console.log('sum images.Nclicks: ' + cc);
   //Compare NClicks to 16.
-  //Change button visibility to visible.
-}
+  if (6 === cc) {
+    //make the buttons visible
+    var outcome = gebi('outcome');
+    outcome.style['visibility'] = 'visible';
+    var voteAgain = gebi('voteAgain');
+    voteAgain.style['visibility'] = 'visible';
+
+    var container = gebi('imagesContainer'); //I need a way to leave the function so refreshImage stops running?
+    container.style['visiblity'] = 'hidden'; //doesn't work yet.
+  }//end if for Nclicks comparison to 16.
+} //end refreshImage
+
+//Event Listener for when user clicks "Show Results" button
+var plot = gebi('plot');
+outcome.addEventListener('click', function(){
+  plot.style['visibility'] = 'visible';
+});

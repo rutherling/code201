@@ -1,23 +1,27 @@
 #leftImage{
   background-image: url("img/beardBeanie.jpg");
-  width = 400px;
-  height= 400px;
+  width: 300px;
+  height: 300px;
   background-size: cover;
   background-position: center;
 }
-
 #rightImage{
   background-image: url("img/boyfriendPillow.jpg");
-  width = 400px;
-  height= 400px;
+  width: 300px;
+  height: 300px;
   background-size: cover;
   background-position: center;
 }
-
+#centerImage{
+  background-image: url("img/cornerFrame.jpg");
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+}
 #parent{
   background-color: green;
   width: 960px;
-  height: 1800px;
   margin: auto;
 }
 .container{ /*This holds the two images*/
@@ -39,5 +43,15 @@ h1{
   color: white;
 }
 button{
-  visibility:hidden;
+  visibility: hidden;
+  /*hide all buttons, but you'll change it so voteMore is visible*/
+}
+#plot{
+  visibility: hidden;
+  background-color: gold;
+}
+
+td{
+  background-color: purple;
+  width: 5px;
 }

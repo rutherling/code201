@@ -79,13 +79,20 @@ centerImage.addEventListener('click', refreshImage);
 rightImage.addEventListener('click', refreshImage);
 
 function refreshImage() {
+  //only increment the one that gets clicked!
   images[leftImage.imageIdx[0]].incrementClicks();
   images[rightImage.imageIdx[1]].incrementClicks();
   images[centerImage.imageIdx[2]].incrementClicks();
   var s = 'click counts: ';
   images.map(function(ele) { s += ele.Nclicks + ', '; });
-  console.log(s);
+  //console.log(s);
 
   showNewImage(getRandomInt());
-  // Can use dot notation ("width" doesn't contain a dash)
+  //For loop OR MAP METHOD to aggregate NClicks for each image object.
+  var cc = 0;
+  //map over the array.
+  images.map(function(sum){cc += sum.Nclicks;}); //I think this will look through all the image objects in images[] and add .NClicks together.
+  console.log('sum images.Nclicks: ' + cc);
+  //Compare NClicks to 16.
+  //Change button visibility to visible.
 }

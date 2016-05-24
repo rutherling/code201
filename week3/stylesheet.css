@@ -22,7 +22,6 @@
 #parent{
   background-color: green;
   width: 960px;
-  height: 1800px;
   margin: auto;
 }
 .container{ /*This holds the two images*/
@@ -44,5 +43,5 @@ h1{
   color: white;
 }
 button{
-  visibility:hidden;
+  visibility:visible;
 }

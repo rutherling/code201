@@ -82,10 +82,12 @@ function Image(src) { //creates an array of image objects. pass in imgNames[i] a
   }; //end incrementNshown method.
 } //end image constructor
 
+
 for (var ii = 0; ii < imgNames.length; ii++) {
   var img = new Image(imgNames[ii]);
   images.push(img);
 }//end for loop that creates image objects in the img array.
+
 
 showNewImage(getRandomInt()); //run showNewImage. Index is set from getRandomInt.
 console.log('leftImage.imageIdx = ' + leftImage.imageIdx);
@@ -97,7 +99,7 @@ var voteAgain = gebi('voteAgain'); //button for 8 more votes
 
 //Event listeners for buttons
 outcome.addEventListener('click', showCanvas);
-//newRound.addEventListener('click', initialize);
+newRound.addEventListener('click', initialize);
 voteAgain.addEventListener('click', eightMore);
 
 function refreshImage(e) {
@@ -265,3 +267,16 @@ function eightMore(){
   //show image container
   container.style['display'] = 'flex';
 } //end eightMore function.
+
+///////////////////////USER CLICKS NEW ROUND///////////////////////////////////////////
+function initialize(){
+  //Set totalClicks, Nclicks, and Nshown all back to 0.
+  totalClicks = 0;
+  images = []; //wipes out current image objects.
+  for (var ii = 0; ii < imgNames.length; ii++) {
+    var img = new Image(imgNames[ii]);
+    images.push(img);
+  }//reinitializes all images.
+  //Hide the canvas and the buttons.
+  eightMore();
+}

@@ -7,16 +7,17 @@ function gebi(id) {
   return document.getElementById(id);
 }
 //image directory
-var imgNames = ['beardBeanie',
-                'boyfriendPillow',
-                'cornerFrame',
-                'ctrlAltDel',
-                'domeUmbrella',
-                'girlfriendPillow',
-                'pingpongDoor',
-                'pizzaScissors',
-                'slippersLED',
-                'travelPillow'];
+var imgNames = [['beardBeanie','Beard Beanie'],
+                ['boyfriendPillow', 'Boyfriend Pillow'],
+                ['cornerFrame','Corner Frame'],
+                ['ctrlAltDel','Computer Rescue Wand'],
+                ['domeUmbrella', 'Dome Umbrella'],
+                ['girlfriendPillow', 'Girlfriend Pillow'],
+                ['pingpongDoor', 'Ping Pong Door'],
+                ['pizzaScissors', 'Pizza Scissors'],
+                ['slippersLED', 'LED Slippers'],
+                ['travelPillow', 'Travel Pillow']
+              ];
 
 //This will be an array of objects, each one represents the image itself (not the div container).
 var images = [];
@@ -55,8 +56,9 @@ function showNewImage(idx) { //accepts an array of indices to retrieve a image f
 } //end showNewImage([left, center, right]);
 
 function Image(src) { //creates an array of image objects. pass in imgNames[i] as src.
+  this.displayName = src[1];
   this.ident = src;
-  this.src = 'img/' + src + '.jpg';
+  this.src = 'img/' + src[0] + '.jpg';
   this.Nclicks = 0;
   this.Nshown = 0;
   this.incrementClicks = function() {
@@ -87,59 +89,117 @@ function refreshImage(e) {
   switch(e){
   case 'leftImage':
     images[leftImage.imageIdx[0]].incrementClicks();
-    var newTD = document.createElement('td');
-    newTD.textContent = ':)';
-    var tableRow = gebi(images[leftImage.imageIdx[0]].ident);
-    console.log('tableRow: ' + tableRow.id);
-    tableRow.appendChild(newTD);
-    //fails testing, append of null.
-    //repeat for center and right images
     break;
 
   case 'centerImage':
     images[rightImage.imageIdx[1]].incrementClicks();
-    var newTD = document.createElement('td');
-    newTD.textContent = ':)';
-    var tableRow = gebi(images[leftImage.imageIdx[1]].ident);
-    console.log('tableRow: ' + tableRow.id);
-    tableRow.appendChild(newTD);
     break;
 
   case 'rightImage':
     images[centerImage.imageIdx[2]].incrementClicks();
-    var newTD = document.createElement('td');
-    newTD.textContent = ':)';
-    var tableRow = gebi(images[leftImage.imageIdx[2]].ident);
-    console.log('tableRow: ' + tableRow.id);
-    tableRow.appendChild(newTD);
     break;
   }
 
   var s = 'click counts: ';
+  //For loop OR MAP METHOD to aggregate NClicks for each image object.
   images.map(function(ele) { s += ele.Nclicks + ', '; });
   //console.log(s);
 
   showNewImage(getRandomInt());
-  //For loop OR MAP METHOD to aggregate NClicks for each image object.
+
   var cc = 0;
   //map over the array.
-  images.map(function(sum){cc += sum.Nclicks;}); //I think this will look through all the image objects in images[] and add .NClicks together.
+  images.map(function(sum){
+    cc += sum.Nclicks;
+    return cc;
+  }); //I think this will look through all the image objects in images[] and add .NClicks together.
   console.log('sum images.Nclicks: ' + cc);
+
   //Compare NClicks to 16.
-  if (16 === cc) {
-    //make the buttons visible
+  if (4 === cc) {
+    //make the buttons visible. Why didn't gebi('button') work? display:none?
     var outcome = gebi('outcome');
     outcome.style['visibility'] = 'visible';
+    outcome.addEventListener('click', showCanvas);//end event listener. I wrote "drawCanvas" function.
+
+    var plot = gebi('visual');
+    plot.style['visibility'] = 'visible'; //show the div containing canvas drawing
+
     var voteAgain = gebi('voteAgain');
     voteAgain.style['visibility'] = 'visible';
 
+    var newRound = gebi('newRound');
+    newRound.style['visibility'] = 'visible';
+
     var container = gebi('imagesContainer'); //I need a way to leave the function so refreshImage stops running?
-    container.style['visiblity'] = 'hidden'; //doesn't work yet.
+    container.style['display'] = 'none'; //doesn't work yet.
   }//end if for Nclicks comparison to 16.
+
+  NclicksArray(); //run function inside refreshImage(), but keep the return value in a global variable.
 } //end refreshImage
 
-//Event Listener for when user clicks "Show Results" button
-var plot = gebi('plot');
-outcome.addEventListener('click', function(){
-  plot.style['visibility'] = 'visible';
-});
+//Array that matches src display names
+function nameArray(){
+  var displayNames = [];
+  for (var i = 0; i < imgNames.length; i++) {
+    displayNames.push(imgNames[i][1]);
+  }//end for loop
+  return displayNames;
+}//end nameArray
+var displayNames = nameArray();
+
+//Array that matches images{.Nclicks}
+function NclicksArray(){
+  var countClick = [];
+  for (var i = 0; i < images.length; i++) {
+    countClick.push(images[i].Nclicks);
+  }
+  console.log('countClick: ' + countClick);
+  return countClick; //returns blank, so you need to run the function each time you increment Nclicks.
+}//end NclicksArray
+
+function NshownArray(){
+  var countShown = [];
+  for (var i = 0; i < images.length; i++) {
+    countShown.push(images[i].Nshown);
+  }
+  console.log('countShown: ' + countShown);
+  return countShown; //returns blank, so you need to run the function each time you increment Nclicks.
+}//end NshownArray
+
+function showCanvas(){
+  var clickCount = NclicksArray(); //run global function NclicksArray.
+  var showCount = NshownArray();
+
+  function drawCanvas (displayNames, clickCount, showCount){ //displayNames is global array.
+    var canvas = document.getElementById('canvas');
+    var myChart = new Chart(canvas, {
+      type: 'bar',
+      data: {
+        labels: displayNames,
+        datasets: [{
+          label: 'Count Voted',
+          data: clickCount
+        },
+          {
+            type: 'bar',
+            label: 'Count Shown',
+            data: showCount,
+            //indexLabel: "{what is this?}"
+          }
+      ]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    });
+  } //end drawCanvas
+  drawCanvas(displayNames, clickCount, showCount);
+  console.log('ShowCanvas ran.');
+}//end showCanvas

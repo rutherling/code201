@@ -16,3 +16,8 @@ I figured out what an event target is!
 
 Lingering questions: What is really supposed to go in a README.md?
 I need a little refresher on appendChild. I thought mine was ok!
+
+Tuesday
+-Overall, how did this lab go?
+-How much time did it take you?
+-What did you learn? What are your lingering questions?

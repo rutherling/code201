@@ -117,7 +117,7 @@ function refreshImage(e) {
 
   //Compare NClicks to 16.
   if (4 === cc) {
-    //make the buttons visible
+    //make the buttons visible. Why didn't gebi('button') work? display:none?
     var outcome = gebi('outcome');
     outcome.style['visibility'] = 'visible';
     outcome.addEventListener('click', showCanvas);//end event listener. I wrote "drawCanvas" function.
@@ -127,6 +127,9 @@ function refreshImage(e) {
 
     var voteAgain = gebi('voteAgain');
     voteAgain.style['visibility'] = 'visible';
+
+    var newRound = gebi('newRound');
+    newRound.style['visibility'] = 'visible';
 
     var container = gebi('imagesContainer'); //I need a way to leave the function so refreshImage stops running?
     container.style['display'] = 'none'; //doesn't work yet.
@@ -154,20 +157,37 @@ function NclicksArray(){
   console.log('countClick: ' + countClick);
   return countClick; //returns blank, so you need to run the function each time you increment Nclicks.
 }//end NclicksArray
-//Event Listener for when user clicks "Show Results" button
+
+function NshownArray(){
+  var countShown = [];
+  for (var i = 0; i < images.length; i++) {
+    countShown.push(images[i].Nshown);
+  }
+  console.log('countShown: ' + countShown);
+  return countShown; //returns blank, so you need to run the function each time you increment Nclicks.
+}//end NshownArray
+
 function showCanvas(){
   var clickCount = NclicksArray(); //run global function NclicksArray.
+  var showCount = NshownArray();
 
-  function drawCanvas (displayNames, clickCount){ //displayNames is global array.
+  function drawCanvas (displayNames, clickCount, showCount){ //displayNames is global array.
     var canvas = document.getElementById('canvas');
     var myChart = new Chart(canvas, {
       type: 'bar',
       data: {
         labels: displayNames,
         datasets: [{
-          label: '# of Votes',
+          label: 'Count Voted',
           data: clickCount
-        }]
+        },
+          {
+            type: 'bar',
+            label: 'Count Shown',
+            data: showCount,
+            //indexLabel: "{what is this?}"
+          }
+      ]
       },
       options: {
         scales: {
@@ -180,6 +200,6 @@ function showCanvas(){
       }
     });
   } //end drawCanvas
-  drawCanvas(displayNames, clickCount);
+  drawCanvas(displayNames, clickCount, showCount);
   console.log('ShowCanvas ran.');
 }//end showCanvas

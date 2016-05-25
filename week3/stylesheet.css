@@ -48,7 +48,10 @@ button{
 }
 #visual{
   visibility: hidden;
-  background-color: gold;
+  background-color: white;
+}
+#newRound{
+  visibility: hidden;
 }
 
 td{

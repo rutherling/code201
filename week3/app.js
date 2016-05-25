@@ -23,9 +23,18 @@ var imgNames = [['beardBeanie','Beard Beanie'],
 var images = [];
 
 //create a variable from DOM element for each image div so you can set the background-image url().
-leftImage = gebi('leftImage');
-rightImage = gebi('rightImage');
-centerImage = gebi('centerImage');
+var container = gebi('imagesContainer'); //div containing images on which to vote
+var leftImage = gebi('leftImage');
+var rightImage = gebi('rightImage');
+var centerImage = gebi('centerImage');
+
+//Variable for canvases container
+var plot = gebi('visual'); //div containing canvases
+
+//Image event listeners
+leftImage.addEventListener('click', refreshImage); //event to listen for, function to run.
+centerImage.addEventListener('click', refreshImage);
+rightImage.addEventListener('click', refreshImage);
 
 //generate three random integers. ***extra credit if they are unique.
 function getRandomInt() {
@@ -77,9 +86,15 @@ for (var ii = 0; ii < imgNames.length; ii++) {
 showNewImage(getRandomInt()); //run showNewImage. Index is set from getRandomInt.
 console.log('leftImage.imageIdx = ' + leftImage.imageIdx);
 
-leftImage.addEventListener('click', refreshImage); //event to listen for, function to run.
-centerImage.addEventListener('click', refreshImage);
-rightImage.addEventListener('click', refreshImage);
+//Variables for buttons
+var outcome = gebi('outcome'); //show results button
+var newRound = gebi('newRound'); //button for New Round
+var voteAgain = gebi('voteAgain'); //button for 8 more votes
+
+//Event listeners for buttons
+outcome.addEventListener('click', showCanvas);
+//newRound.addEventListener('click', initialize);
+voteAgain.addEventListener('click', eightMore);
 
 function refreshImage(e) {
   //only increment the one that gets clicked!
@@ -116,28 +131,19 @@ function refreshImage(e) {
   console.log('sum images.Nclicks: ' + cc);
 
   //Compare NClicks to 16.
-  if (4 === cc) {
-    //make the buttons visible. Why didn't gebi('button') work? display:none?
-    var outcome = gebi('outcome');
-    outcome.style['visibility'] = 'visible';
-    outcome.addEventListener('click', showCanvas);//end event listener. I wrote "drawCanvas" function.
-
-    var plot = gebi('visual');
-    plot.style['visibility'] = 'visible'; //show the div containing canvas drawing
-
-    var voteAgain = gebi('voteAgain');
-    voteAgain.style['visibility'] = 'visible';
-
-    var newRound = gebi('newRound');
-    newRound.style['visibility'] = 'visible';
-
-    var container = gebi('imagesContainer'); //I need a way to leave the function so refreshImage stops running?
-    container.style['display'] = 'none'; //doesn't work yet.
+  if (8 === cc) { //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX   CHANGE BACK TO 16    XXXXXXXXXXXXXXXXXXXXXXXXXXX
+    //make the buttons visible.
+    outcome.style['visibility'] = 'visible'; //show results button
+    voteAgain.style['visibility'] = 'visible'; //show 8 more votes button
+    newRound.style['visibility'] = 'visible'; //show New Round button.
+    container.style['display'] = 'none'; //hide the images container
   }//end if for Nclicks comparison to 16.
 
   NclicksArray(); //run function inside refreshImage(), but keep the return value in a global variable.
 } //end refreshImage
 
+/////////////////////////////////END INITIAL VOTING ROUND. START RESPONSE TO USER'S BUTTON CHOICE (3 OPTIONS)
+/////////////////////// USER CLICKS SHOW RESULTS
 //Array that matches src display names
 function nameArray(){
   var displayNames = [];
@@ -182,6 +188,8 @@ function percents (num, den){
 }//end percents function
 
 function showCanvas(){
+  plot.style['visibility'] = 'visible'; //show the div containing canvas drawings
+
   var clickCount = NclicksArray(); //run global function NclicksArray.
   var showCount = NshownArray();
   var percentArray = percents(clickCount, showCount);
@@ -239,3 +247,15 @@ function showCanvas(){
   console.log('ShowCanvas ran.');
   //console.log('test + ' test);
 }//end showCanvas
+
+/////////////////////// USER CLICKS 8 MORE VOTES/////////////////////////////////////////
+function eightMore(){
+  console.log('eightMore ran');  
+}
+//hide canvases and buttons
+
+//show image container
+
+//compare Nclicks to 24 (16 initial, 8 additional)
+
+//show canvases and New Round button. Keep 8 more votes and Show Results buttons hidden.

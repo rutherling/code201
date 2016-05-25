@@ -64,6 +64,8 @@ function showNewImage(idx) { //accepts an array of indices to retrieve a image f
   console.log(s);
 } //end showNewImage([left, center, right]);
 
+var totalClicks = 0;
+
 function Image(src) { //creates an array of image objects. pass in imgNames[i] as src.
   this.displayName = src[1];
   this.ident = src;
@@ -72,6 +74,8 @@ function Image(src) { //creates an array of image objects. pass in imgNames[i] a
   this.Nshown = 0;
   this.incrementClicks = function() {
     this.Nclicks++;
+    totalClicks++;
+    console.log('total clicks: ' + totalClicks);
   }; //end incrementClicks method
   this.incrementNshown = function() {
     this.Nshown++;
@@ -122,22 +126,24 @@ function refreshImage(e) {
 
   showNewImage(getRandomInt());
 
-  var cc = 0;
-  //map over the array.
-  images.map(function(sum){
-    cc += sum.Nclicks;
-    return cc;
-  }); //I think this will look through all the image objects in images[] and add .NClicks together.
-  console.log('sum images.Nclicks: ' + cc);
-
-  //Compare NClicks to 16.
-  if (8 === cc) { //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX   CHANGE BACK TO 16    XXXXXXXXXXXXXXXXXXXXXXXXXXX
+  //Compare totalClicks to 16.
+  if (8 === totalClicks) { //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX   CHANGE BACK TO 16    XXXXXXXXXXXXXXXXXXXXXXXXXXX
     //make the buttons visible.
     outcome.style['visibility'] = 'visible'; //show results button
     voteAgain.style['visibility'] = 'visible'; //show 8 more votes button
     newRound.style['visibility'] = 'visible'; //show New Round button.
     container.style['display'] = 'none'; //hide the images container
   }//end if for Nclicks comparison to 16.
+
+  //continuously compare totalClicks to 24 (16 initial, 8 additional)
+  if (9 === totalClicks) {
+    showCanvas();
+    //show canvases and New Round button. hide the images container
+    //Keep 8 more votes and Show Results buttons hidden.
+    plot.style['visibility'] = 'visible';
+    newRound.style['visibility'] = 'visible';
+    container.style['display'] = 'none';
+  }//end comparison of totalClicks
 
   NclicksArray(); //run function inside refreshImage(), but keep the return value in a global variable.
 } //end refreshImage
@@ -250,12 +256,12 @@ function showCanvas(){
 
 /////////////////////// USER CLICKS 8 MORE VOTES/////////////////////////////////////////
 function eightMore(){
-  console.log('eightMore ran');  
-}
-//hide canvases and buttons
+  //hide canvases and buttons
 
-//show image container
+  outcome.style['visibility'] = 'hidden';
+  voteAgain.style['visibility'] = 'hidden';
+  newRound.style['visibility'] = 'hidden';
 
-//compare Nclicks to 24 (16 initial, 8 additional)
-
-//show canvases and New Round button. Keep 8 more votes and Show Results buttons hidden.
+  //show image container
+  container.style['display'] = 'flex';
+} //end eightMore function.

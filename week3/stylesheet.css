@@ -24,7 +24,7 @@
   width: 960px;
   margin: auto;
 }
-.container{ /*This holds the two images*/
+.container{ /*This holds the three images*/
   display: flex;
   flex-flow: row;
   flow-direction: row;

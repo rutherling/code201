@@ -1,5 +1,17 @@
 User (or program) action
 --> expected outcome
+Wednesday
+1. Create a loop for percentages[] and make sure you have count clicked in the numerator and count shown in the denominator. Round to 2 decimals.
+--> The array should match up arithmetically.
+2. Display the percentages in their own Canvas until you figure out the label index :)
+--> This should ONLY show up in two scenarios: after clicking Show Results button OR after Nclicks === 24.
+3. Refresh the page after the 2nd click.
+-->Nshown should NOT increment. It should have the same counts as the log before the refresh.
+4. Do 16 clicks and hit "8 more votes". Refresh after the 10th click.
+-->Confirm your NShown totals to 30.
+5. Check behavior after 24th click (16 clicks, 8 more clicks).
+-->Automatically show the Canvas. Do not show buttons for "Show Results" or "8 more votes".
+
 Tuesday
 1. Start by checking that you can connect to the Chart.js library with <script> tags in the index.html.
 --> You should be able to see the sample code from Chartjs.org.

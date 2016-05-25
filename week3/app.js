@@ -167,11 +167,26 @@ function NshownArray(){
   return countShown; //returns blank, so you need to run the function each time you increment Nclicks.
 }//end NshownArray
 
+function percents (num, den){
+  var percentArray = [];
+  for (var i = 0; i < num.length; i++) {
+    if (den[i] === 0) {
+      var percent = 0;
+    } else{
+      var percent = (num[i] / den[i]);
+      percent = percent.toFixed(3); //not sure if this works?
+    }
+    percentArray.push(percent);
+  }
+  return percentArray;
+}//end percents function
+
 function showCanvas(){
   var clickCount = NclicksArray(); //run global function NclicksArray.
   var showCount = NshownArray();
+  var percentArray = percents(clickCount, showCount);
 
-  function drawCanvas (displayNames, clickCount, showCount){ //displayNames is global array.
+  function drawCanvas (displayNames, clickCount, showCount, percentArray){ //displayNames is global array.
     var canvas = document.getElementById('canvas');
     var myChart = new Chart(canvas, {
       type: 'bar',
@@ -199,7 +214,28 @@ function showCanvas(){
         }
       }
     });
+    var canvas2 = document.getElementById('canvas2');
+    var myChart = new Chart(canvas2, {
+      type: 'bar',
+      data: {
+        labels: displayNames,
+        datasets: [{
+          label: 'Percent Clicked',
+          data: percentArray
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    });
   } //end drawCanvas
-  drawCanvas(displayNames, clickCount, showCount);
+  drawCanvas(displayNames, clickCount, showCount, percentArray);
   console.log('ShowCanvas ran.');
+  //console.log('test + ' test);
 }//end showCanvas

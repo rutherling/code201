@@ -57,7 +57,7 @@ function showNewImage(idx) { //accepts an array of indices to retrieve a image f
 
 function Image(src) { //creates an array of image objects. pass in imgNames[i] as src.
   this.displayName = src[1];
-  this.ident = src;
+  this.ident = src; //you probably need an index here. maybe you don't use it anymore?
   this.src = 'img/' + src[0] + '.jpg';
   this.Nclicks = 0;
   this.Nshown = 0;

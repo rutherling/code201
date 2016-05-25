@@ -46,7 +46,7 @@ button{
   visibility: hidden;
   /*hide all buttons, but you'll change it so voteMore is visible*/
 }
-#plot{
+#visual{
   visibility: hidden;
   background-color: gold;
 }

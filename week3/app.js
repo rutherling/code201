@@ -7,16 +7,17 @@ function gebi(id) {
   return document.getElementById(id);
 }
 //image directory
-var imgNames = ['beardBeanie',
-                'boyfriendPillow',
-                'cornerFrame',
-                'ctrlAltDel',
-                'domeUmbrella',
-                'girlfriendPillow',
-                'pingpongDoor',
-                'pizzaScissors',
-                'slippersLED',
-                'travelPillow'];
+var imgNames = [['beardBeanie','Beard Beanie'],
+                ['boyfriendPillow', 'Boyfriend Pillow'],
+                ['cornerFrame','Corner Frame'],
+                ['ctrlAltDel','Computer Rescue Wand'],
+                ['domeUmbrella', 'Dome Umbrella'],
+                ['girlfriendPillow', 'Girlfriend Pillow'],
+                ['pingpongDoor', 'Ping Pong Door'],
+                ['pizzaScissors', 'Pizza Scissors'],
+                ['slippersLED', 'LED Slippers'],
+                ['travelPillow', 'Travel Pillow']
+              ];
 
 //This will be an array of objects, each one represents the image itself (not the div container).
 var images = [];
@@ -55,8 +56,9 @@ function showNewImage(idx) { //accepts an array of indices to retrieve a image f
 } //end showNewImage([left, center, right]);
 
 function Image(src) { //creates an array of image objects. pass in imgNames[i] as src.
+  this.displayName = src[1];
   this.ident = src;
-  this.src = 'img/' + src + '.jpg';
+  this.src = 'img/' + src[0] + '.jpg';
   this.Nclicks = 0;
   this.Nshown = 0;
   this.incrementClicks = function() {
@@ -114,7 +116,7 @@ function refreshImage(e) {
   console.log('sum images.Nclicks: ' + cc);
 
   //Compare NClicks to 16.
-  if (16 === cc) {
+  if (4 === cc) {
     //make the buttons visible
     var outcome = gebi('outcome');
     outcome.style['visibility'] = 'visible';
@@ -127,28 +129,88 @@ function refreshImage(e) {
 } //end refreshImage
 
 //Event Listener for when user clicks "Show Results" button
-var plot = gebi('visual');
-outcome.addEventListener('click', function(){
-  plot.style['visibility'] = 'visible';
-});
-//put up any visual
-var canvas = document.getElementById("myChart");
-var myChart = new Chart(canvas, {
-  type: 'bar',
-  data: {
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"], //change to array of image.ident values.
-    datasets: [{
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3] //change this to image.Nclicks values
-    }]
-  },
+
+outcome.addEventListener('click', draw);//end event listener. I wrote "drawCanvas" function.
+
+//Array that matches src display names
+function nameArray(){
+  var displayNames = [];
+  for (var i = 0; i < imgNames.length; i++) {
+    displayNames.push(imgNames[i][1]);
+  }//end for loop
+  return displayNames;
+}//end nameArray
+var displayNames = nameArray();
+
+//Array that matches images{.Nclicks}
+function NclicksArray(){
+  var countClick = [];
+  for (var i = 0; i < images.length; i++) {
+    countClick.push(images[i].Nclicks);
+  }
+  return countClick;
+}
+var countClick = NclicksArray(); //assign the return value to a variable.
+//
+
+//Function to create canvas
+var productNames = [
+  'Coke',
+  'Pepsi',
+  'Sprite',
+  'Diet Coke',
+//'Mercedez',
+  'Orange Crush'];
+
+// var body = document.body;
+// console.log(body)
+// Didn't work:
+//   body.addEventListener('load', getRandomData);
+// This did work:
+//   body.addEventListener('click', getRandomData);
+
+// Same as window.addEventListener(...)
+addEventListener('load', drawRandomData);
+
+function draw(numArray, pcntArray, labelArray) {
+  var canvas = document.getElementById('canvas');
+
+  // **Shamelessly** copied from Chart.js documentation
+  var myChart = new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: labelArray,
+      datasets: [{
+        label: '# of Votes',
+        data: numArray,
+      },
+        {
+          type: 'line',
+          label: 'votes/shown %',
+          data: pcntArray
+        }]
+    },
     options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
+      scales: {
+        yAxes: [{
+          ticks: { beginAtZero:true }
+        }]
+      }
     }
-});
+  });
+}
+
+//draw(getRandomData());
+
+function drawRandomData() {
+  console.log('BLAAAAAH!');
+  var data = [];
+  var percents = [];
+  for (var ii = 0; ii < productNames.length; ii++) {
+    data.push(Math.ceil(Math.random() * 100));
+    percents.push(Math.ceil(Math.random() * 100));
+  }
+  console.log(data);
+  draw(data, percents, productNames);
+}
+//Function to draw canvas and show the parent container.

@@ -99,7 +99,7 @@ var voteAgain = gebi('voteAgain'); //button for 8 more votes
 
 //Event listeners for buttons
 outcome.addEventListener('click', showCanvas);
-newRound.addEventListener('click', initialize);
+newRound.addEventListener('click', eightMore); //you can re-initialize the whole thing if you want, but basically the behavior is the same as eightMore.
 voteAgain.addEventListener('click', eightMore);
 
 function refreshImage(e) {
@@ -129,7 +129,7 @@ function refreshImage(e) {
   showNewImage(getRandomInt());
 
   //Compare totalClicks to 16.
-  if (8 === totalClicks) { //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX   CHANGE BACK TO 16    XXXXXXXXXXXXXXXXXXXXXXXXXXX
+  if (16 === totalClicks) {
     //make the buttons visible.
     outcome.style['visibility'] = 'visible'; //show results button
     voteAgain.style['visibility'] = 'visible'; //show 8 more votes button
@@ -137,14 +137,14 @@ function refreshImage(e) {
     container.style['display'] = 'none'; //hide the images container
   }//end if for Nclicks comparison to 16.
 
-  //continuously compare totalClicks to 24 (16 initial, 8 additional)
-  if (9 === totalClicks) {
+  //after 16th vote, continuously compare totalClicks to multiples of 8.
+  if ((totalClicks - 16) % 8 === 0 && (totalClicks - 16) > 0) {
     showCanvas();
     //show canvases and New Round button. hide the images container
     //Keep 8 more votes and Show Results buttons hidden.
     plot.style['visibility'] = 'visible';
     newRound.style['visibility'] = 'visible';
-    container.style['display'] = 'none';
+    container.style['display'] = 'none'; //don't need this
   }//end comparison of totalClicks
 
   NclicksArray(); //run function inside refreshImage(), but keep the return value in a global variable.
@@ -196,6 +196,7 @@ function percents (num, den){
 }//end percents function
 
 function showCanvas(){
+  outcome.style['visibility'] = 'hidden';
   plot.style['visibility'] = 'visible'; //show the div containing canvas drawings
 
   var clickCount = NclicksArray(); //run global function NclicksArray.
@@ -258,8 +259,7 @@ function showCanvas(){
 
 /////////////////////// USER CLICKS 8 MORE VOTES/////////////////////////////////////////
 function eightMore(){
-  //hide canvases and buttons
-
+  //hide canvases and buttons AFTER they click "8 more votes"
   outcome.style['visibility'] = 'hidden';
   voteAgain.style['visibility'] = 'hidden';
   newRound.style['visibility'] = 'hidden';

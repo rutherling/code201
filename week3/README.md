@@ -30,3 +30,5 @@ started at 12:15.
 -What did you learn? What are your lingering questions?
 I learned about the toFixed function for setting decimal places on numbers.
 I learned a more efficient way to track total clicks.
+Lingering questions: I need to figure out Canvas scales because it is all wrong! countShown has a max of 9, but it's only showing up to 1.
+I wonder how websites remember information when a user hits the back and forward buftons?

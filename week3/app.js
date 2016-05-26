@@ -168,7 +168,7 @@ function NclicksArray(){
   for (var i = 0; i < images.length; i++) {
     countClick.push(images[i].Nclicks);
   }
-  localStorage.countClick= countClick;
+  localStorage.countClick = countClick;
   console.log('countClick: ' + countClick);
   return localStorage.countClick; //returns blank, so you need to run the function each time you increment Nclicks.
 }//end NclicksArray
@@ -178,8 +178,9 @@ function NshownArray(){
   for (var i = 0; i < images.length; i++) {
     countShown.push(images[i].Nshown);
   }
+  localStorage.countShown = countShown;
   console.log('countShown: ' + countShown);
-  return countShown; //returns blank, so you need to run the function each time you increment Nclicks.
+  return localStorage.countShown; //returns blank, so you need to run the function each time you increment Nclicks.
 }//end NshownArray
 
 function percents (num, den){

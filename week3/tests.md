@@ -1,5 +1,10 @@
-User (or program) action
---> expected outcome
+Thursday
+1. Place the <video> above the <h1> and confirm that it plays one time on load.
+2. Create a div with the vote counter. Test that it maintains state and animates after each img refresh.
+3. Make it pretty: try to have a tile background.
+4. Try to break it: see if totalClicks is wrong after 16.
+5. Fix Canvas (top) to show the full range of NClicks.
+
 Wednesday
 1. Create a loop for percentages[] and make sure you have count clicked in the numerator and count shown in the denominator. Round to 2 decimals.
 --> The array should match up arithmetically.

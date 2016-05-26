@@ -1,3 +1,6 @@
+Thursday!
+"As a [who], I want [what], so that [why]".
+
 Wednesday!
 As a user, I want to see consistent app behavior. When I click on a button, I should know what that button does before I click it, and it should always do the same thing.
 

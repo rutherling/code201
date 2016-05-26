@@ -138,7 +138,7 @@ function refreshImage(e) {
   }//end if for Nclicks comparison to 16.
 
   //after 16th vote, continuously compare totalClicks to multiples of 8.
-  if ((totalClicks - 16) % 8 === 0 && (totalClicks - 16) > 0) {
+  if ((totalClicks - 16) % 8 === 0 && (totalClicks - 16) > 0) { //TODO: json.parse(totalclicks)
     showCanvas();
     //show canvases and New Round button. hide the images container
     //Keep 8 more votes and Show Results buttons hidden.

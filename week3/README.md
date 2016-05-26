@@ -17,7 +17,16 @@ I figured out what an event target is!
 Lingering questions: What is really supposed to go in a README.md?
 I need a little refresher on appendChild. I thought mine was ok!
 
-Tuesday
+Tuesday (written in Canvas submission)
 -Overall, how did this lab go?
 -How much time did it take you?
 -What did you learn? What are your lingering questions?
+
+Wednesday
+-Overall, how did this lab go?
+I spent most of my time catching up on Tuesday's lab. I can still do the local storage work before the end of the night.
+-How much time did it take you?
+started at 12:15.
+-What did you learn? What are your lingering questions?
+I learned about the toFixed function for setting decimal places on numbers.
+I learned a more efficient way to track total clicks.

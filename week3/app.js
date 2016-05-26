@@ -23,9 +23,18 @@ var imgNames = [['beardBeanie','Beard Beanie'],
 var images = [];
 
 //create a variable from DOM element for each image div so you can set the background-image url().
-leftImage = gebi('leftImage');
-rightImage = gebi('rightImage');
-centerImage = gebi('centerImage');
+var container = gebi('imagesContainer'); //div containing images on which to vote
+var leftImage = gebi('leftImage');
+var rightImage = gebi('rightImage');
+var centerImage = gebi('centerImage');
+
+//Variable for canvases container
+var plot = gebi('visual'); //div containing canvases
+
+//Image event listeners
+leftImage.addEventListener('click', refreshImage); //event to listen for, function to run.
+centerImage.addEventListener('click', refreshImage);
+rightImage.addEventListener('click', refreshImage);
 
 //generate three random integers. ***extra credit if they are unique.
 function getRandomInt() {
@@ -55,6 +64,8 @@ function showNewImage(idx) { //accepts an array of indices to retrieve a image f
   console.log(s);
 } //end showNewImage([left, center, right]);
 
+var totalClicks = 0;
+
 function Image(src) { //creates an array of image objects. pass in imgNames[i] as src.
   this.displayName = src[1];
   this.ident = src;
@@ -63,23 +74,33 @@ function Image(src) { //creates an array of image objects. pass in imgNames[i] a
   this.Nshown = 0;
   this.incrementClicks = function() {
     this.Nclicks++;
+    totalClicks++;
+    console.log('total clicks: ' + totalClicks);
   }; //end incrementClicks method
   this.incrementNshown = function() {
     this.Nshown++;
   }; //end incrementNshown method.
 } //end image constructor
 
+
 for (var ii = 0; ii < imgNames.length; ii++) {
   var img = new Image(imgNames[ii]);
   images.push(img);
 }//end for loop that creates image objects in the img array.
 
+
 showNewImage(getRandomInt()); //run showNewImage. Index is set from getRandomInt.
 console.log('leftImage.imageIdx = ' + leftImage.imageIdx);
 
-leftImage.addEventListener('click', refreshImage); //event to listen for, function to run.
-centerImage.addEventListener('click', refreshImage);
-rightImage.addEventListener('click', refreshImage);
+//Variables for buttons
+var outcome = gebi('outcome'); //show results button
+var newRound = gebi('newRound'); //button for New Round
+var voteAgain = gebi('voteAgain'); //button for 8 more votes
+
+//Event listeners for buttons
+outcome.addEventListener('click', showCanvas);
+newRound.addEventListener('click', initialize);
+voteAgain.addEventListener('click', eightMore);
 
 function refreshImage(e) {
   //only increment the one that gets clicked!
@@ -107,37 +128,30 @@ function refreshImage(e) {
 
   showNewImage(getRandomInt());
 
-  var cc = 0;
-  //map over the array.
-  images.map(function(sum){
-    cc += sum.Nclicks;
-    return cc;
-  }); //I think this will look through all the image objects in images[] and add .NClicks together.
-  console.log('sum images.Nclicks: ' + cc);
-
-  //Compare NClicks to 16.
-  if (4 === cc) {
-    //make the buttons visible. Why didn't gebi('button') work? display:none?
-    var outcome = gebi('outcome');
-    outcome.style['visibility'] = 'visible';
-    outcome.addEventListener('click', showCanvas);//end event listener. I wrote "drawCanvas" function.
-
-    var plot = gebi('visual');
-    plot.style['visibility'] = 'visible'; //show the div containing canvas drawing
-
-    var voteAgain = gebi('voteAgain');
-    voteAgain.style['visibility'] = 'visible';
-
-    var newRound = gebi('newRound');
-    newRound.style['visibility'] = 'visible';
-
-    var container = gebi('imagesContainer'); //I need a way to leave the function so refreshImage stops running?
-    container.style['display'] = 'none'; //doesn't work yet.
+  //Compare totalClicks to 16.
+  if (8 === totalClicks) { //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX   CHANGE BACK TO 16    XXXXXXXXXXXXXXXXXXXXXXXXXXX
+    //make the buttons visible.
+    outcome.style['visibility'] = 'visible'; //show results button
+    voteAgain.style['visibility'] = 'visible'; //show 8 more votes button
+    newRound.style['visibility'] = 'visible'; //show New Round button.
+    container.style['display'] = 'none'; //hide the images container
   }//end if for Nclicks comparison to 16.
+
+  //continuously compare totalClicks to 24 (16 initial, 8 additional)
+  if (9 === totalClicks) {
+    showCanvas();
+    //show canvases and New Round button. hide the images container
+    //Keep 8 more votes and Show Results buttons hidden.
+    plot.style['visibility'] = 'visible';
+    newRound.style['visibility'] = 'visible';
+    container.style['display'] = 'none';
+  }//end comparison of totalClicks
 
   NclicksArray(); //run function inside refreshImage(), but keep the return value in a global variable.
 } //end refreshImage
 
+/////////////////////////////////END INITIAL VOTING ROUND. START RESPONSE TO USER'S BUTTON CHOICE (3 OPTIONS)
+/////////////////////// USER CLICKS SHOW RESULTS
 //Array that matches src display names
 function nameArray(){
   var displayNames = [];
@@ -167,11 +181,28 @@ function NshownArray(){
   return countShown; //returns blank, so you need to run the function each time you increment Nclicks.
 }//end NshownArray
 
+function percents (num, den){
+  var percentArray = [];
+  for (var i = 0; i < num.length; i++) {
+    if (den[i] === 0) {
+      var percent = 0;
+    } else{
+      var percent = (num[i] / den[i]);
+      percent = percent.toFixed(3); //not sure if this works?
+    }
+    percentArray.push(percent);
+  }
+  return percentArray;
+}//end percents function
+
 function showCanvas(){
+  plot.style['visibility'] = 'visible'; //show the div containing canvas drawings
+
   var clickCount = NclicksArray(); //run global function NclicksArray.
   var showCount = NshownArray();
+  var percentArray = percents(clickCount, showCount);
 
-  function drawCanvas (displayNames, clickCount, showCount){ //displayNames is global array.
+  function drawCanvas (displayNames, clickCount, showCount, percentArray){ //displayNames is global array.
     var canvas = document.getElementById('canvas');
     var myChart = new Chart(canvas, {
       type: 'bar',
@@ -199,7 +230,53 @@ function showCanvas(){
         }
       }
     });
+    var canvas2 = document.getElementById('canvas2');
+    var myChart = new Chart(canvas2, {
+      type: 'bar',
+      data: {
+        labels: displayNames,
+        datasets: [{
+          label: 'Percent Clicked',
+          data: percentArray
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    });
   } //end drawCanvas
-  drawCanvas(displayNames, clickCount, showCount);
+  drawCanvas(displayNames, clickCount, showCount, percentArray);
   console.log('ShowCanvas ran.');
+  //console.log('test + ' test);
 }//end showCanvas
+
+/////////////////////// USER CLICKS 8 MORE VOTES/////////////////////////////////////////
+function eightMore(){
+  //hide canvases and buttons
+
+  outcome.style['visibility'] = 'hidden';
+  voteAgain.style['visibility'] = 'hidden';
+  newRound.style['visibility'] = 'hidden';
+
+  //show image container
+  container.style['display'] = 'flex';
+} //end eightMore function.
+
+///////////////////////USER CLICKS NEW ROUND///////////////////////////////////////////
+function initialize(){
+  //Set totalClicks, Nclicks, and Nshown all back to 0.
+  totalClicks = 0;
+  images = []; //wipes out current image objects.
+  for (var ii = 0; ii < imgNames.length; ii++) {
+    var img = new Image(imgNames[ii]);
+    images.push(img);
+  }//reinitializes all images.
+  //Hide the canvas and the buttons.
+  eightMore();
+}

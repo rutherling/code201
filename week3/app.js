@@ -75,6 +75,7 @@ function Image(src) { //creates an array of image objects. pass in imgNames[i] a
   this.incrementClicks = function() {
     this.Nclicks++;
     totalClicks++;
+    localStorage.totalClicks = totalClicks;
     console.log('total clicks: ' + totalClicks);
   }; //end incrementClicks method
   this.incrementNshown = function() {
@@ -129,8 +130,9 @@ function refreshImage(e) {
   showNewImage(getRandomInt());
 
   //Compare totalClicks to 16.
-  if (16 === totalClicks) {
+  if (16 === JSON.parse(totalClicks)) {
     //make the buttons visible.
+    console.log(JSON.parse(totalClicks));
     outcome.style['visibility'] = 'visible'; //show results button
     voteAgain.style['visibility'] = 'visible'; //show 8 more votes button
     newRound.style['visibility'] = 'visible'; //show New Round button.

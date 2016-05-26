@@ -74,20 +74,19 @@ function Image(src) { //creates an array of image objects. pass in imgNames[i] a
   this.Nshown = 0;
   this.incrementClicks = function() {
     this.Nclicks++;
+    //localStorage.Nclicks = this.Nclicks;
     totalClicks++;
-    console.log('total clicks: ' + totalClicks);
+    localStorage.totalClicks = totalClicks;
   }; //end incrementClicks method
   this.incrementNshown = function() {
     this.Nshown++;
   }; //end incrementNshown method.
 } //end image constructor
 
-
 for (var ii = 0; ii < imgNames.length; ii++) {
   var img = new Image(imgNames[ii]);
   images.push(img);
 }//end for loop that creates image objects in the img array.
-
 
 showNewImage(getRandomInt()); //run showNewImage. Index is set from getRandomInt.
 console.log('leftImage.imageIdx = ' + leftImage.imageIdx);
@@ -129,8 +128,9 @@ function refreshImage(e) {
   showNewImage(getRandomInt());
 
   //Compare totalClicks to 16.
-  if (16 === totalClicks) {
+  if (16 === JSON.parse(totalClicks)) {
     //make the buttons visible.
+    console.log(JSON.parse(totalClicks));
     outcome.style['visibility'] = 'visible'; //show results button
     voteAgain.style['visibility'] = 'visible'; //show 8 more votes button
     newRound.style['visibility'] = 'visible'; //show New Round button.
@@ -168,8 +168,9 @@ function NclicksArray(){
   for (var i = 0; i < images.length; i++) {
     countClick.push(images[i].Nclicks);
   }
+  localStorage.countClick = countClick;
   console.log('countClick: ' + countClick);
-  return countClick; //returns blank, so you need to run the function each time you increment Nclicks.
+  return localStorage.countClick; //returns blank, so you need to run the function each time you increment Nclicks.
 }//end NclicksArray
 
 function NshownArray(){
@@ -177,8 +178,9 @@ function NshownArray(){
   for (var i = 0; i < images.length; i++) {
     countShown.push(images[i].Nshown);
   }
+  localStorage.countShown = countShown;
   console.log('countShown: ' + countShown);
-  return countShown; //returns blank, so you need to run the function each time you increment Nclicks.
+  return localStorage.countShown; //returns blank, so you need to run the function each time you increment Nclicks.
 }//end NshownArray
 
 function percents (num, den){

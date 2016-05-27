@@ -5,7 +5,9 @@ green: #92B968;
 gray: #BAABA8;
 off-black: #181B2F;
 tan: #D3A786;*/
-
+body{
+  background-color: #181B2F;
+}
 #leftImage{
   background-image: url("img/beardBeanie.jpg");
   width: 300px;
@@ -43,6 +45,7 @@ tan: #D3A786;*/
   margin: auto;
   display: inline-flex;
 }
+
 .images{
   flex-grow: 1;
 }

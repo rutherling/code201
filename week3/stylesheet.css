@@ -34,11 +34,12 @@ body{
   width: 960px;
   margin: auto;
 }
-.container{ /*This holds the three images*/
+#imagesContainer{ /*This holds the three images*/
   display: flex;
   flex-flow: row;
   flow-direction: row;
   justify-content: space-around;
+  margin: auto;
 }
 .child{
   width:50%

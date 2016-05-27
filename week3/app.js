@@ -57,6 +57,12 @@ function showNewImage(idx) { //accepts an array of indices to retrieve a image f
   images[idx[0]].incrementNshown();
   images[idx[1]].incrementNshown();
   images[idx[2]].incrementNshown();
+  //put them in local storage
+  // localStorage.leftImage.imageIdx = JSON.stringify(leftImage.imageIdx);
+  // localStorage.centerImage.imageIdx = JSON.stringify(centerImage.imageIdx);
+  // localStorage.rightImage.imageIdx = JSON.stringify(rightImage.imageIdx);
+
+  NshownArray();
 
   //log the count shown for each image. This should increment by 1 for each of the three images shown.
   var s = 'Show counts: ';
@@ -74,9 +80,8 @@ function Image(src) { //creates an array of image objects. pass in imgNames[i] a
   this.Nshown = 0;
   this.incrementClicks = function() {
     this.Nclicks++;
-    //localStorage.Nclicks = this.Nclicks;
     totalClicks++;
-    localStorage.totalClicks = totalClicks;
+    localStorage.totalClicks = JSON.stringify(totalClicks);
   }; //end incrementClicks method
   this.incrementNshown = function() {
     this.Nshown++;
@@ -138,7 +143,7 @@ function refreshImage(e) {
   }//end if for Nclicks comparison to 16.
 
   //after 16th vote, continuously compare totalClicks to multiples of 8.
-  if ((totalClicks - 16) % 8 === 0 && (totalClicks - 16) > 0) { //TODO: json.parse(totalclicks)
+  if ((JSON.parse(totalClicks) - 16) % 8 === 0 && (JSON.parse(totalClicks) - 16) > 0) {
     showCanvas();
     //show canvases and New Round button. hide the images container
     //Keep 8 more votes and Show Results buttons hidden.
@@ -168,9 +173,9 @@ function NclicksArray(){
   for (var i = 0; i < images.length; i++) {
     countClick.push(images[i].Nclicks);
   }
-  localStorage.countClick = countClick;
+  localStorage.countClick = JSON.stringify(countClick);
   console.log('countClick: ' + countClick);
-  return localStorage.countClick; //returns blank, so you need to run the function each time you increment Nclicks.
+  return JSON.parse(localStorage.countClick); //returns blank, so you need to run the function each time you increment Nclicks.
 }//end NclicksArray
 
 function NshownArray(){
@@ -178,9 +183,9 @@ function NshownArray(){
   for (var i = 0; i < images.length; i++) {
     countShown.push(images[i].Nshown);
   }
-  localStorage.countShown = countShown;
+  localStorage.countShown = JSON.stringify(countShown);
   console.log('countShown: ' + countShown);
-  return localStorage.countShown; //returns blank, so you need to run the function each time you increment Nclicks.
+  return JSON.parse(localStorage.countShown); //returns blank, so you need to run the function each time you increment Nclicks.
 }//end NshownArray
 
 function percents (num, den){
@@ -265,6 +270,7 @@ function eightMore(){
   outcome.style['visibility'] = 'hidden';
   voteAgain.style['visibility'] = 'hidden';
   newRound.style['visibility'] = 'hidden';
+  visual.style['visibility'] = 'hidden';
 
   //show image container
   container.style['display'] = 'flex';

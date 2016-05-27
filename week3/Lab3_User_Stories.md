@@ -1,3 +1,13 @@
+Thursday!
+"As a [who], I want [what], so that [why]".
+As a user, I hate large video files because I hate buffers. This means the page should load really fast (<3 seconds).
+
+As a user, I want to be able to re-watch videos I love over and over again.
+
+As a developer, I want users to find my website visually appealing and easy to use. This means making it extremely clear where to click at any point in the flow.
+
+As a marketing manager, I want the site to be beautiful so users spend a lot of time on it.
+
 Wednesday!
 As a user, I want to see consistent app behavior. When I click on a button, I should know what that button does before I click it, and it should always do the same thing.
 

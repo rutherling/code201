@@ -6,27 +6,35 @@
     <meta charset="utf-8">
     <meta lang="en">
     <link href="stylesheet.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
     <div id="parent">
+      <div id="videoContainer">
+        <video id="campaignVideo" width="300px" controls poster="img/campaignLogo.png">
+          <source src="vid/busMall.mp4" />
+          <source src="vid/busMall.ogv"/>
+          <p> Sorry, the video cannot load.</p>
+        </video>
+      </div>
       <div>
-        <h1>Week 3 Project</h1>
+        <h1 class="color text">Vote for Your Favorite</h1>
       </div>
 
       <div id="imagesContainer">
-        <div id="leftImage" class="child">
+        <div id="leftImage" class="child grow">
         </div>
-        <div id="centerImage" class="child">
+        <div id="centerImage" class="child grow">
         </div>
-        <div id="rightImage" class="child">
+        <div id="rightImage" class="child grow">
         </div>
       </div>
 
       <div class="buttons">
-        <button id="outcome">Show Results! </button>
-        <button id="voteAgain"> 8 more votes! </button>
-        <button id="newRound"> New Round </button>
+        <button id="outcome" class="threed text">Show Results! </button>
+        <button id="voteAgain" class="threed text"> 8 more votes! </button>
+        <button id="newRound" class="threed text"> New Round </button>
       </div>
 
       <div id="visual">
